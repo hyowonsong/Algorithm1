@@ -1,6 +1,5 @@
 def solution(name, yearning, photo):
     answer = []
-    
     for match in photo:
         score = 0
         for n in match:
