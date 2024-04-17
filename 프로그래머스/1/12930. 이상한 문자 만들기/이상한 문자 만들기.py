@@ -1,14 +1,11 @@
 def solution(s):
     answer = ''
     s = s.split(' ')
-    for word in s:
-        for i in range(len(word)):
-            if i % 2 == 0:
-                answer += word[i].upper()
+    for i in s:
+        for j in range(len(i)):
+            if j % 2 == 0:
+                answer += i[j].upper()
             else:
-                answer += word[i].lower()
-        answer += ' '
+                answer += i[j].lower()
+        answer +=' '
     return answer[:-1]
-
-s = "hello world"
-print(solution(s))  # 출력: 'HeLlO WoRlD'
