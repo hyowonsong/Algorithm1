@@ -1,20 +1,20 @@
+# LRU 알고리즘은 스택을 사용하는 것이 적절하지 않다. 링크드리스트나 deque를 사용해야 한다.
+
+from collections import deque
+
 def solution(cacheSize, cities):
     answer = 0
-    stack = []
-    
+    cache = deque(maxlen = cacheSize) # maxlen은 deque에 의해 유지되는 요소의 최대 길이를 나타내는 매개변수
+
     for city in cities:
-        city = city.lower()  # 대소문자 구분을 없애기 위해 소문자로 변환
-        # 캐시에 있는 경우
-        if city in stack:
-            answer += 1  # 실행 시간 1 증가
-            stack.remove(city)  # 해당 도시를 캐시에서 제거
-            stack.append(city)  # 캐시의 맨 뒤에 추가하여 최근 사용으로 갱신
-        # 캐시에 없는 경우
-        else:
-            answer += 5  # 실행 시간 5 증가
-            # 캐시가 가득 찬 경우
-            if len(stack) >= cacheSize and cacheSize > 0:
-                stack.pop(0)  # 가장 오래된 도시를 제거
-            if cacheSize > 0:  # 캐시 크기가 0보다 큰 경우에만 새로운 도시 추가
-                stack.append(city)  # 새로운 도시 추가
+        city_lower = city.lower()  # 대소문자 구분하지 않기 위해 소문자로 변환
+        
+        if city_lower in cache:  # cache hit
+            cache.remove(city_lower)  # 해당 도시 이름을 제거하고
+            cache.append(city_lower)  # 가장 최신으로 삽입
+            answer += 1  # 실행시간 1 증가
+        else:  # cache miss
+            cache.append(city_lower)  # 캐시에 새로운 도시 이름 추가
+            answer += 5  # 실행시간 5 증가
+
     return answer
