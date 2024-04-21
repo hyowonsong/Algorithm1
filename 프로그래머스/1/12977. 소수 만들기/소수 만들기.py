@@ -12,7 +12,7 @@ def is_prime(num):
 def solution(nums):
     from itertools import combinations             # 전체 조합 사용
     count = 0
-    for comb in combinations(nums, 3):
-        if is_prime(sum(comb)):
+    for comb in combinations(nums, 3):    # combinations를 3개씩
+        if is_prime(sum(comb)):           # 만약 소수라면
             count += 1
     return count
