@@ -1,9 +1,18 @@
 def solution(phone_book):
-    phone_book.sort()
+    # 해시 맵 초기화
+    hash_map = {}
     
-    # 정렬된 전화번호부를 순회하면서 인접한 두 번호끼리 접두어 관계인지 확인
-    for i in range(len(phone_book) - 1):
-        if phone_book[i+1].startswith(phone_book[i]):
-            return False
+    # 각 전화번호의 해시 값을 계산하여 해시 맵에 저장
+    for phone_number in phone_book:
+        hash_map[phone_number] = True
+    
+    # 각 전화번호의 접두어가 해시 맵에 있는지 확인
+    for phone_number in phone_book:
+        prefix = ""
+        for digit in phone_number:
+            prefix += digit
+            # 접두어가 해시 맵에 있다면 해당 전화번호는 다른 번호의 접두어
+            if prefix != phone_number and prefix in hash_map:
+                return False
     
     return True
