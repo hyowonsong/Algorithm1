@@ -2,15 +2,16 @@
 # 주어진 숫자 중 3개의 수를 더했을 때 소수가 되는 경우의 개수
 
 def is_prime(num):
-    if num < 2:
+    if num<2:
         return False
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+    else:
+        for i in range(2,int(num**0.5)+1):
+            if num % i == 0:
+                return False
+        return True
 
 def solution(nums):
-    from itertools import combinations             # 전체 조합 사용
+    from itertools import combinations
     count = 0
     for comb in combinations(nums, 3):    # combinations를 3개씩
         if is_prime(sum(comb)):           # 만약 소수라면
