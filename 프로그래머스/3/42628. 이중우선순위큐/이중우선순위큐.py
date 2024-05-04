@@ -2,15 +2,15 @@ from heapq import heapify, heappush, heappop
 
 def solution(operations):
     answer = []
-    hq = []
+    hq = []                 # heapq 저장할 리스트
 
     for operation in operations:
-        alphabet, number = operation.split()
+        alphabet, number = operation.split()    # operations 나누기
         number = int(number)
 
-        if alphabet == 'I' :
+        if alphabet == 'I' :       # I면 삽입이니까 heappush
             heappush(hq, number)
-        else: # alphabet == 'D'
+        else: # alphabet == 'D'        # I가 아니면 
             if hq:
                 if number == -1:
                     heappop(hq) # 최솟값을 삭제
