@@ -1,13 +1,10 @@
 def solution(brown, yellow):
-    answer = []
-    total = brown + yellow
-    
-    for w in range(1, total + 1):
-        if total % w == 0:
-            h = total // w
-            if (w - 2) * (h - 2) == yellow:
-                answer.append(h)
-                answer.append(w)
-                break
-                
-    return answer
+    total_area = brown + yellow
+
+    for height in range(1, int(total_area**0.5) + 1):
+        if total_area % height == 0:
+            width = total_area // height
+            if width >= height:
+                # 가장자리 갈색 격자의 수 확인
+                if (width + height - 2) * 2 == brown:
+                    return [width, height]
