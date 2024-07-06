@@ -1,17 +1,25 @@
-def solution(k,tangerine):
-    answer = 0
-    a = {}
-    
+def solution(k, tangerine):
+    # 귤 크기의 빈도를 저장할 딕셔너리
+    freq = {}
     for i in tangerine:
-        if i in a:
-            a[i] += 1         # 딕셔너리 value 값 올려주기
+        if i in freq:
+            freq[i] += 1
         else:
-            a[i] = 1
+            freq[i] = 1
     
-    a = dict(sorted(a.items(), key = lambda x: x[1], reverse = True))
-    for i in a:
-        if k<=0 : 
-            return answer
-        k -= a[i]                      #딕셔너리의 value 값 만큼 빼준다.
-        answer +=1
-    return answer
+    # 빈도를 리스트로 변환한 후 빈도순으로 정렬
+    # sort 메서드는 리스트를 직접 정렬하는 반면, 
+    # sorted() 함수는 정렬된 새로운 리스트를 반환하며, 원본 리스트는 변경X
+    freq_list = sorted(freq.values(), reverse=True)
+    
+    total = 0
+    kinds = 0
+    
+    # 빈도가 높은 순서대로 귤을 선택
+    for count in freq_list:
+        total += count
+        kinds += 1
+        if total >= k:
+            break
+    
+    return kinds
