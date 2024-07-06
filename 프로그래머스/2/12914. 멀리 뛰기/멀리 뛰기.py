@@ -11,7 +11,7 @@ def solution(n):
     if n<3:
         return n
     else:
-        dp = [0]*(n+1)
+        dp = [0] * (n+1)          # 반드시 DP 테이블 초기화 
         dp[1] = 1
         dp[2] = 2
         for i in range(3,n+1):
