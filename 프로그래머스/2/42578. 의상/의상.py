@@ -1,10 +1,8 @@
-# 의상
-
 def solution(clothes):
-    answer = 0 
-    hash_map = {}
+    answer = 0
+    hash_map ={}
     for clothe, type in clothes:
-        # 해시 맵에서 type에 아무것도 없으면 0해주고 +1
+        # 키에 해당하는 값이 존재하면 그 값을 반환, 존재하지 않으면 기본값으로 0을 반환
         hash_map[type] = hash_map.get(type, 0) + 1
 
     
