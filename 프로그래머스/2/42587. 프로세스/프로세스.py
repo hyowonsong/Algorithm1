@@ -14,7 +14,8 @@ def solution(priorities, location):
             q.append(l)         
             if location < 0:      # 사용자가 요청한 문서의 위치가 큐를 벗어나는 경우를 처리
                 location = len(q) -1 # 이런 경우에는 큐의 마지막에 위치한 문서로 위치를 갱신해야 합니다. 
-        else:                     
+        
+        else:                     # l이 max(q)인 경우
             answer += 1
             if location < 0:      # location이 0 이하로 떨어진다면, 이는 큐의 왼쪽 끝을 벗어나는 것을 의미합니다.
                 break
