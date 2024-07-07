@@ -5,6 +5,8 @@ def is_prime(num):
     if num<2:
         return False
     else:
+        # num의 제곱근까지의 모든 수로 나누어 
+        # 나머지가 0인 경우가 있다면 소수가 아니므로 False를 반환합니다.
         for i in range(2,int(num**0.5)+1):
             if num % i == 0:
                 return False
