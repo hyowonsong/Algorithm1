@@ -1,3 +1,5 @@
+# 덧칠하기
+
 def solution(n, m, section):
     answer = 1 # 칠하는 횟수
     paint = section[0] # 덧칠 시작점
