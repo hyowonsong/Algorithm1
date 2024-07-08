@@ -12,7 +12,9 @@ def solution(phone_book):
     for phone_number in phone_book:
         prefix = ""
         for digit in phone_number:
-            prefix += digit      # prefix라는 변수에 digit을 하나씩 추가하여 접두어 형성
+            # prefix라는 변수에 digit을 하나씩 추가하여 접두어 형성            
+            prefix += digit      
+            
             # 접두어가 해시 맵에 있다면 해당 전화번호는 다른 번호의 접두어
             if prefix != phone_number and prefix in hash_map:
                 return False
