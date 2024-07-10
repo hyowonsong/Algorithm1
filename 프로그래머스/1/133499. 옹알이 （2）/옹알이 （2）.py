@@ -4,6 +4,7 @@ def solution(babbling):
     answer = 0  
     speak = ['aya', 'ye', 'woo', 'ma']  
     
+    # babbling과 speak 둘다 같이 for 문 돌리고 j가 bab에 없다면
     for bab in babbling:
         # 각 단어에 대해 처리
         for j in speak:
