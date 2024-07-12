@@ -1,34 +1,27 @@
-# 문자열 나누기
-
 def solution(s):
-    # 문자열 개수 세기, 현재 인덱스, 문자열 s의 길이 변수 이렇게 3개 필요
-    answer = 0
-    i = 0
-    n = len(s)
-
-    while i<n:
-        # 현재 부분 문자열의 첫 번째 문자를 x로 설정
-        x = s[i]        
-        count_x = 0       
-        count_other = 0
-
-        while i<n:
-
-            # 현재 문자가 x인 경우
-            if s[i] == x:     
-                count_x +=1  
-
-            # 현재 문자가 x가 아닌 경우    
-            else:             
-                count_other += 1
-
-            # 인덱스를 다음 문자로 이동
-            i += 1
-
-            # x와 x가 아닌 문자의 개수가 같은 경우
-            if count_x == count_other:
-                break
+    result = 0  
+    while s:  
+        dict = {}
+        x = s[0]  # 첫 번째 문자를 x로 지정
+        x_count = 0  # x의 등장 횟수
+        other_count = 0  # x가 아닌 다른 문자들의 총 등장 횟수
+        
+        for i, char in enumerate(s):
+            if char == x:
+                x_count += 1  # x와 같은 문자면 x_count 증가
+            else:
+                other_count += 1  # x가 아닌 문자면 other_count 증가
+                # x가 아닌 문자의 개수를 딕셔너리에 저장 
+                dict[char] = dict.get(char, 0) + 1
+            
+            # x의 개수와 다른 문자들의 총 개수가 같아지면
+            if x_count == sum(dict.values()):
+                result += 1  # 분해된 문자열 개수 증가
+                s = s[i+1:]  # 분해한 부분을 제외한 나머지 문자열로 s 업데이트
+                break  # 내부 for 루프 종료
+        else:
+            # for 루프가 break 없이 끝났다면 (즉, 끝까지 같아지지 않았다면)
+            result += 1  # 남은 전체를 하나의 문자열로 취급
+            break  # while 루프 종료
     
-        answer += 1
-    return answer
-
+    return result  # 최종적으로 분해된 문자열의 개수 반환
