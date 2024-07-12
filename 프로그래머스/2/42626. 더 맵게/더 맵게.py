@@ -1,26 +1,26 @@
-import heapq 
+from heapq import heappop, heappush
 
 def solution(scoville, K):
-    # 최소 힙 초기화
-    heapq.heapify(scoville)
-    
+    heap = []
     answer = 0
+
+    # 모든 스코빌 지수를 힙에 추가
+    for s in scoville:
+        heappush(heap, s)
     
-    while scoville[0] < K:
-        # 만약 힙의 길이가 1이고 첫번째 요소가 K보다 작다면
-        if len(scoville) == 1:
+    # 힙의 최소값이 K 이상이 될 때까지 반복
+    while heap[0] < K:
+        # 힙에 원소가 두 개 이상 있어야 함
+        if len(heap) < 2:
             return -1
         
-        # 가장 작은 두 요소 꺼내기
-        first = heapq.heappop(scoville)
-        second = heapq.heappop(scoville)
+        # 가장 맵지 않은 두 개의 음식을 꺼내서 섞음
+        first = heappop(heap)
+        second = heappop(heap)
+        new_scoville = first + 2 * second
         
-        # 새로운 음식의 스코빌 지수 계산
-        new_food = first + (second * 2)
-        
-        # 새로운 음식을 힙에 추가
-        heapq.heappush(scoville, new_food)
-        
+        # 새로 만든 음식을 힙에 추가
+        heappush(heap, new_scoville)
         answer += 1
 
     return answer
