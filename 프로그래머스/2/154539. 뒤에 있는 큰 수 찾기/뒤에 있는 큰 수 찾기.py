@@ -10,7 +10,7 @@ def solution(numbers):
             idx = stack.pop()  # 현재 스택을 pop
             answer[idx] = numbers[i]  # answer idx 초기화
         
-        # 현재 원소의 인덱스를 스택에 추가
+        # 현재 원소의 인덱스를 스택에 추가(while 문 안돌아도 추가됨)
         stack.append(i)
     
     return answer
