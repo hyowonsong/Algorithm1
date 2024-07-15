@@ -1,3 +1,5 @@
+# B의 가장 큰 숫자가 A의 가장 큰 숫자를 이기는 선택
+
 def solution(A, B):
     B.sort(reverse=True)  # B팀의 숫자들을 내림차순으로 정렬
     b_index = 0  # B팀의 현재 인덱스
