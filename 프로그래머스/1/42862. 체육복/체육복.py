@@ -15,12 +15,13 @@ def solution(n, lost, reserve):
         if students[i] == 0:
             # 앞번호 학생에게 빌리기
             if i > 1 and students[i-1] > 1:
-                students[i] += 1
                 students[i-1] -= 1
+                students[i] += 1
             # 뒷번호 학생에게 빌리기
             elif i < n and students[i+1] > 1:
-                students[i] += 1
                 students[i+1] -= 1
+                students[i] += 1
+                
     
     # 체육복이 있는 학생 수 세기
     count = 0
