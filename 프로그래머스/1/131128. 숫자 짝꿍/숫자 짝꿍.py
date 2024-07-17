@@ -1,36 +1,19 @@
+
 def solution(X, Y):
-    # 각 숫자의 출현 횟수를 저장할 딕셔너리 생성
-    x_count = {}
-    y_count = {}
-    for i in range(10):
-        x_count[str(i)] = 0
-        y_count[str(i)] = 0
+    answer = []
     
-    # X의 각 숫자 출현 횟수 계산
-    for num in X:
-        x_count[num] += 1
-    
-    # Y의 각 숫자 출현 횟수 계산
-    for num in Y:
-        y_count[num] += 1
-    
-    # 공통으로 나타나는 숫자들을 찾아 결과 리스트 생성
-    result = []
+    # 0부터 9까지의 숫자에 대해
     for i in range(9, -1, -1):  # 9부터 0까지 역순으로
-        num = str(i)
-        x_num_count = x_count[num]
-        y_num_count = y_count[num]
-        common_count = min(x_num_count, y_num_count)
-        
-        for _ in range(common_count):
-            result.append(num)
+        digit = str(i)
+        # X와 Y에서 해당 숫자의 개수를 세고, 그 중 작은 값을 선택
+        count = min(X.count(digit), Y.count(digit))
+        # 선택된 개수만큼 결과 리스트에 추가
+        answer.extend([digit] * count)
     
     # 결과 처리
-    if len(result) == 0:
+    if not answer:
         return "-1"
-    
-    if result[0] == "0":
+    if answer[0] == "0":
         return "0"
     
-    # 결과 리스트를 문자열로 변환
-    return "".join(result)
+    return "".join(answer)
