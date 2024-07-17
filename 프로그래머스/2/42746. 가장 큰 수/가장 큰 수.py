@@ -21,12 +21,24 @@ def solution(numbers):
             return arr
         # pivot을 리스트의 중앙값으로 설정
         pivot = arr[len(arr) // 2]
+        
         # left는 pivot 보다 앞에 와야 하는 요소들로 구성
-        left = [x for x in arr if compare(x, pivot) == -1]
+        left = []
+        for x in arr:
+            if compare(x, pivot) == -1:
+                left.append(x)
+
         # middle은 pivot과 동일한 요소들로 구성
-        middle = [x for x in arr if compare(x, pivot) == 0]
+        middle = []
+        for x in arr:
+            if compare(x, pivot) == 0:
+                middle.append(x)
+
         # right는 pivot보다 뒤에 와야하는 요소들로 구성
-        right = [x for x in arr if compare(x, pivot) == 1]
+        right = []
+        for x in arr:
+            if compare(x, pivot) == 1:
+                right.append(x)
         # quicksort 함수를 재귀적으로 호출
         return quicksort(left) + middle + quicksort(right)
     
