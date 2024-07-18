@@ -14,7 +14,9 @@ def solution(numbers):
         else:
             return 0
     
-    # 정렬을 직접 구현
+    # 퀵 정렬
+    # pivot을 정하고 left(왼쪽), right(오른쪽) 를 정하고 
+    # left는 pivot보다 큰 경우 right는 pivot 보다 작은 경우로 서로 바꾸기
     def quicksort(arr):
         # arr의 길이가 1 이하이면 이미 정렬된 상태이므로 그대로 반환
         if len(arr) <= 1:
