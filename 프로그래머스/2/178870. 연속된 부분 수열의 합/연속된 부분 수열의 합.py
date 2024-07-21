@@ -1,26 +1,36 @@
-# 연속된 부분 수열의 합
-
 def solution(sequence, k):
+    # 수열의 길이
     n = len(sequence)
-    left, right = 0, 0  # 투 포인터의 시작점
-    current_sum = 0  # 현재 부분 수열의 합
-    result = [0, n-1]  # 결과를 저장할 리스트, 초기값은 전체 수열
+    
+    # 투 포인터 초기화
+    start = 0
+    end = 0
+    
+    # 현재 부분 수열의 합 초기화
+    current_sum = sequence[0]
+    
+    # 가장 짧은 부분 수열의 길이와 인덱스 초기화
+    min_length = float('inf')
+    result = [0, 0]
 
-    while right < n:
-        # 오른쪽 포인터를 이동하며 합을 증가
-        current_sum += sequence[right]
-        
-        # 현재 합이 k보다 크면 왼쪽 포인터를 이동하며 합을 감소
-        while current_sum > k and left <= right:
-            current_sum -= sequence[left]
-            left += 1
-        
-        # 현재 합이 k와 같으면 결과 업데이트 검토
-        if current_sum == k:
-            # 현재 부분 수열의 길이가 저장된 결과보다 짧으면 업데이트
-            if right - left < result[1] - result[0]:
-                result = [left, right]
-        
-        right += 1  # 다음 요소로 이동
+    # 수열을 순회하면서 부분 수열 찾기
+    while end < n:
+        if current_sum < k:
+            # 현재 합이 k보다 작으면 end 포인터를 오른쪽으로 이동
+            end += 1
+            if end < n:
+                current_sum += sequence[end]
+        elif current_sum >= k:
+            if current_sum == k:
+                # 합이 k와 같고, 현재 부분 수열이 이전에 찾은 것보다 짧으면 업데이트
+                length = end - start + 1
+                if length < min_length:
+                    min_length = length
+                    result = [start, end]
+            
+            # start 포인터를 오른쪽으로 이동
+            current_sum -= sequence[start]
+            start += 1
 
-    return result  # 최종 결과 반환
+    # 찾은 부분 수열의 시작과 끝 인덱스 반환
+    return result
