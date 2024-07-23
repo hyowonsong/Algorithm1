@@ -10,7 +10,7 @@ def solution(weights):
         # 같은 무게의 경우
         if weight_counts[weight] > 1:
             # nC2 조합 계산: n * (n-1) / 2
-            answer += weight_counts[weight] * (weight_counts[weight] - 1) // 2
+            answer+=weight_counts[weight]*(weight_counts[weight]-1)//2
         
         # 다른 무게의 경우
         # 가능한 비율: 2m/3m, 3m/4m, 2m/4m
@@ -20,6 +20,6 @@ def solution(weights):
             # 짝꿍의 무게가 존재하는 경우
             if partner_weight in weight_counts:
                 # 현재 무게의 빈도수 * 짝꿍 무게의 빈도수
-                answer += weight_counts[weight] * weight_counts[partner_weight]
+                answer+=weight_counts[weight]*weight_counts[partner_weight]
     
     return answer
