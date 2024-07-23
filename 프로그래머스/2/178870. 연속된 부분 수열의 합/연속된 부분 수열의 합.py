@@ -1,36 +1,27 @@
 def solution(sequence, k):
-    # 수열의 길이
-    n = len(sequence)
-    
-    # 투 포인터 초기화
-    start = 0
-    end = 0
-    
-    # 현재 부분 수열의 합 초기화
-    current_sum = sequence[0]
-    
-    # 가장 짧은 부분 수열의 길이와 인덱스 초기화
-    min_length = float('inf')
-    result = [0, 0]
+    n = len(sequence)  # 수열의 길이
+    left, right = 0, 0  # 두 개의 포인터 초기화 (부분 수열의 시작과 끝 인덱스)
+    current_sum = sequence[0]  # 현재 부분 수열의 합을 첫 번째 원소로 초기화
+    min_length = float('inf')  # 최소 길이를 무한대로 초기화 (최소 길이를 찾기 위해)
+    result = []  # 결과를 저장할 리스트 초기화
 
-    # 수열을 순회하면서 부분 수열 찾기
-    while end < n:
+    while right < n:  # 오른쪽 포인터가 수열의 끝에 도달할 때까지 반복
         if current_sum < k:
-            # 현재 합이 k보다 작으면 end 포인터를 오른쪽으로 이동
-            end += 1
-            if end < n:
-                current_sum += sequence[end]
-        elif current_sum >= k:
-            if current_sum == k:
-                # 합이 k와 같고, 현재 부분 수열이 이전에 찾은 것보다 짧으면 업데이트
-                length = end - start + 1
-                if length < min_length:
-                    min_length = length
-                    result = [start, end]
-            
-            # start 포인터를 오른쪽으로 이동
-            current_sum -= sequence[start]
-            start += 1
+            # 현재 부분 수열의 합이 k보다 작으면 오른쪽 포인터를 오른쪽으로 이동
+            right += 1
+            if right < n:
+                current_sum += sequence[right]  # 오른쪽 포인터가 가리키는 값을 현재 합에 더함
+        elif current_sum > k:
+            # 현재 부분 수열의 합이 k보다 크면 왼쪽 포인터를 오른쪽으로 이동
+            current_sum -= sequence[left]  # 왼쪽 포인터가 가리키는 값을 현재 합에서 뺌
+            left += 1
+        else:  # current_sum == k
+            # 현재 부분 수열의 합이 k와 같을 때
+            if (right - left + 1) < min_length:
+                # 부분 수열의 길이가 최소 길이보다 짧으면
+                min_length = right - left + 1  # 최소 길이를 갱신
+                result = [left, right]  # 결과를 현재 부분 수열의 시작과 끝 인덱스로 갱신
+            current_sum -= sequence[left]  # 왼쪽 포인터가 가리키는 값을 현재 합에서 뺌
+            left += 1
 
-    # 찾은 부분 수열의 시작과 끝 인덱스 반환
-    return result
+    return result  # 조건을 만족하는 부분 수열의 시작과 끝 인덱스를 반환
