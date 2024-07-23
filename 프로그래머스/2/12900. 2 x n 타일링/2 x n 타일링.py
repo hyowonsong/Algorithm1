@@ -5,8 +5,7 @@ def solution(n):
     
     # 초기 조건 설정
     dp[1] = 1
-    if n > 1:
-        dp[2] = 2
+    dp[2] = 2
     
     # dp 배열 채우기
     for i in range(3, n + 1):
