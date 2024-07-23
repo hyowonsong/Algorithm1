@@ -1,3 +1,6 @@
+# deque는 항상 정렬된 순서대로 되어 있지 않기 때문에 다른 방법 떠올려야.
+# heapq 를 사용해줘야 한다.
+
 import heapq
 
 def solution(book_time):
