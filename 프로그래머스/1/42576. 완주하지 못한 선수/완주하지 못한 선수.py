@@ -1,21 +1,22 @@
 # 완주하지 못한 선수
 
 def solution(participant, completion):
-    # 참가자 이름과 그 수를 딕셔너리로 만듭니다.
-    participant_count = {}
-    for name in participant:
-        if name in participant_count:
-            participant_count[name] += 1
+    # 참가자 이름과 그 수를 딕셔너리(딕셔너리는 {})
+    dict = {}
+
+    for i in participant:
+        if i in dict:
+            dict[i] += 1
         else:
-            participant_count[name] = 1
-    
+            dict[i] = 1
+
     # 완주자 목록을 순회하면서 참가자 카운트에서 뺍니다.
-    for name in completion:
-        participant_count[name] -= 1
-        # 카운트가 0이 되면 딕셔너리에서 제거합니다.
-        if participant_count[name] == 0:
-            del participant_count[name]
-    
+    for i in completion:
+        dict[i] -= 1
+        # 카운트가 0이 되면 딕셔너리에서 제거합니다.(이걸 생각)
+        if dict[i] == 0:
+            del dict[i]
+
     # 남아있는 참가자가 완주하지 못한 선수입니다.
-    for name in participant_count:
-        return name
+    for i in dict:
+        return i
