@@ -9,6 +9,7 @@ def solution(number, k):
             stack.pop()  # 스택에서 마지막 숫자 제거
             k -= 1  # 제거한 숫자 개수 감소
         
+        # stack 에 num 추가
         stack.append(num) 
     
     # 모든 숫자를 순회한 후에도 제거할 숫자가 남아있다면
