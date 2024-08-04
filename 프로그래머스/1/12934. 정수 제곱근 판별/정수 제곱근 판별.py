@@ -1,13 +1,10 @@
-import math
+import math 
 
 def solution(n):
-    answer = 0
     new = math.sqrt(n)
     
+    # is_integer() 를 생각해야 한다!
     if new.is_integer():
-        answer = ((new+1)**2)
-        
+        return int((new+1)**2)
     else:
-        answer = -1
-        
-    return answer
+        return -1
