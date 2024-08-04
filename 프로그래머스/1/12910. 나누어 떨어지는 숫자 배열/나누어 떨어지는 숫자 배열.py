@@ -4,6 +4,7 @@ def solution(arr, divisor):
     answer = []
     
     for i in arr:
+        # i를 다시 divisor 로 나누어야
         if i% divisor ==0:
             answer.append(i)
             
