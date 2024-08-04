@@ -7,7 +7,8 @@ def solution(n,m):
         if n%i == 0 and m%i ==0: # 동시에 나눠지면 공약수
             arr1.append(i)
 
-    for i in range(max(n, m), (n*m)+1):       # n,m 중 큰 값부터 n*m 곱한값 +1 까지 계속 for ㅜㅁㄴ
+    for i in range(max(n, m), (n*m)+1):       
+        # n,m 중 큰 값부터 n*m 곱한값 +1 까지 계속 for 문
         if i%n == 0 and i%m == 0:             # 둘다 0으로 나누어진다면 
             min_num = i                       # min_num = i 
             break
@@ -15,7 +16,3 @@ def solution(n,m):
     max_num = max(arr1)
     answer = [max_num, min_num]
     return answer
-
-    
-if __name__ == "__main__":
-    print( solution(5, 3) )
