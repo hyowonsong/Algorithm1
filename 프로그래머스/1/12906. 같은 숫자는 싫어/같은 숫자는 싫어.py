@@ -1,11 +1,12 @@
 def solution(arr):
-    answer = []
+    stack = []
     for i in arr:
-        if len(answer) == 0:
-            answer.append(i)
+        if len(stack) == 0:
+            stack.append(i)
         else:
-            if i == answer[-1]:  # 현재 요소가 answer의 마지막 요소와 같은지 확인
+            # 현재 요소가 answer의 마지막 요소와 같은지 확인
+            if i == stack[-1]: 
                 continue
             else:
-                answer.append(i)
-    return answer
+                stack.append(i)
+    return stack
