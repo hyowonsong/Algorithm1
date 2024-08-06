@@ -11,6 +11,7 @@ def solution(n,m):
     for i in range(max(n, m), (n*m)+1):       
         # n,m 중 큰 값부터 n*m 곱한값 +1 까지 계속 for 문
         # 여기는 반대로 i가 n으로 나누어질 때 min_num = i 이다.
+        # 최대공약수는 두 수의 공통된 약수 중에서 가장 큰 수를 찾는 것
         if i%n == 0 and i%m == 0:              
             min_num = i                       
             break
