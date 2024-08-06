@@ -4,6 +4,7 @@ def solution(s):
     s = s.split(' ')
     # 리스트의 각 단어에 대해 반복
     for i in s:
+        # len(i)에 대해 for 문을 돌려야 
         for j in range(len(i)):
             # 인덱스가 짝수인 경우
             if j % 2 == 0:
