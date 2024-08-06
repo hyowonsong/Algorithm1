@@ -1,14 +1,12 @@
 def solution(s):
-    last_seen = {}  # 각 문자의 마지막 출현 위치를 기록할 딕셔너리
-    result = []  # 결과 리스트
-    
-    for i, char in enumerate(s):
-        if char in last_seen:
-            result.append(i - last_seen[char])
+    answer =[]
+    s_dict = dict()
+
+    for i in range(len(s)):      
+        if s[i] not in s_dict:
+            answer.append(-1)
         else:
-            result.append(-1)
-        
-        # 현재 문자의 마지막 출현 위치 갱신
-        last_seen[char] = i
-    
-    return result
+            answer.append(i-s_dict[s[i]])
+        # 여기 다시 초기화해줘야함.
+        s_dict[s[i]] = i                        
+    return answer
