@@ -5,10 +5,14 @@ def solution(s):
     stack = []
 
     for i in range(len(s)):
-        if len(stack) == 0:
+        # 만약 stack에 아무것도 없으면 stack에 넣어준다.
+        if len(stack) == 0: 
             stack.append(s[i])
-        elif stack[-1] == s[i]:
+            
+        # stack의 마지막이랑 s[i] 랑 같으면 stack 빼준다.
+        elif stack[-1] == s[i]: 
             stack.pop()
+            
         else:
             stack.append(s[i])
 
