@@ -14,4 +14,7 @@ def solution(strings, n):
             # string 돌면서 n번째 문자열이 i 이고 answer에 없다면 
             if string[n] == i and string not in answer:      
                 answer.append(string)
+                
+            else:
+                continue
     return answer
