@@ -10,6 +10,7 @@ def solution(s):
     temp = ""
     
     for char in s:
+        # char를 하나씩 돌면서 숫자면 한번에 걸리니까 result에 넣어준다.
         # 현재 문자가 숫자인 경우
         if char.isdigit():
             result += char
@@ -18,6 +19,7 @@ def solution(s):
             temp += char
             if temp in dict:
                 result += dict[temp]
+                # temp 반드시 초기화 해줘야
                 temp = ""
     
     return int(result)
