@@ -18,8 +18,9 @@ def solution(arr1, arr2):
     # 곱셈 수행
     for i in range(m):
         for j in range(p):
-            for k in range(n):
-                # 여기 +로 계속 누적해줘야
+            # arr1의 열 개수 또는 arr2의 행 개수
+            for k in range(n): 
+                # 각 값을 곱하고 더합니다
                 result[i][j] += arr1[i][k] * arr2[k][j]
 
     return result
