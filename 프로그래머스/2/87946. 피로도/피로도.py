@@ -1,4 +1,3 @@
-
 from itertools import permutations
 
 def solution(k, dungeons):
@@ -9,7 +8,9 @@ def solution(k, dungeons):
         current_fatigue = k
         count = 0
         
+        # 던전들의 순서 조합인 perm을 for문으로 돌린다. 
         for dungeon in perm:
+            # 던전을 min_fatigue, consume_fatigue 로 정의
             min_fatigue, consume_fatigue = dungeon
             # 현재 피로도로 해당 던전을 탐험할 수 있는지 확인
             if current_fatigue >= min_fatigue:
