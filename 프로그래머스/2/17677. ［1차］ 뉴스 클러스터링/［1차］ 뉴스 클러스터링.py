@@ -1,10 +1,19 @@
 # 뉴스 클러스터링(자카드 유사도)
 # 자카드 유사도는 다중집합(2글자씩 끊어서 사용하기 때문에 끊어줘야한다.)
-
 # 두 집합의 교집합 크기/ 두 집합의 합집합 크기
-        
+
 from collections import Counter
 # Counter는 딕셔너리 형태로 요소의 개수를 셀 수 있게 해준다.
+
+# 다중집합 만들기 함수
+def make_multiset(string):
+    # 딕셔너리 형태로 만들어준다.
+    multiset = Counter()                  
+    for i in range(len(string) - 1):
+        # 영문자로 된 글자 쌍만 유효
+        if string[i:i+2].isalpha():  
+            multiset[string[i:i+2]] += 1
+    return multiset
 
 def solution(str1, str2):
     # 대소문자 구분 없이 처리하기 위해 모두 소문자로 변환
@@ -29,11 +38,3 @@ def solution(str1, str2):
     answer = int(jaccard_similarity * 65536)
     
     return answer
-
-# 다중집합 만들기 함수
-def make_multiset(string):
-    multiset = Counter()
-    for i in range(len(string) - 1):
-        if string[i:i+2].isalpha():  # 영문자로 된 글자 쌍만 유효
-            multiset[string[i:i+2]] += 1
-    return multiset
