@@ -16,6 +16,6 @@ def solution(nums):
     from itertools import combinations
     count = 0
     for comb in combinations(nums, 3):    # combinations를 3개씩
-        if is_prime(sum(comb)):           # 만약 소수라면
+        if is_prime(sum(comb)):   # 만약 합친 것이 소수라면
             count += 1
     return count
