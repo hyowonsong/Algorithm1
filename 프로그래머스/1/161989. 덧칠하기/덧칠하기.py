@@ -11,5 +11,7 @@ def solution(n, m, section):
             answer += 1
             # i로 초기해줘야 덧칠 시작점이 바뀌지 안그러면 계속 section[0]
             paint = section[i]  
+        else:
+            continue
             
     return answer
