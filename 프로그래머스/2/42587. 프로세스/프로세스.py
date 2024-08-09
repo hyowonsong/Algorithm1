@@ -1,23 +1,30 @@
 # 프로세스
-
 from collections import deque
 
 def solution(priorities, location):
-    q = deque(priorities)
     answer = 0
-    while q: 
-        m = max(q)                # m = max(q) 정의해줘야
-        l = q.popleft()           # 이거 빼줘야
-        location -= 1             # 문서 하나가 빠졌기 때문에 location -=1 해준다.
-        
-        if l != m:                # l이 max(q)가 아닌 경우
-            q.append(l)         
-            if location < 0:      # 사용자가 요청한 문서의 위치가 큐를 벗어나는 경우를 처리
-                location = len(q) -1 # 이런 경우에는 큐의 마지막에 위치한 문서로 위치를 갱신해야 합니다. 
-        
-        else:                     # l이 max(q)인 경우
+    queue = deque(priorities)
+
+    
+    while queue:
+        # max(queue) 를 지정해줘야 한다.
+        m = max(queue)
+        # 실행 대기 큐에서 대기중인 프로세스 하나를 꺼낸다.
+        l = queue.popleft()
+        # 문서 하나가 빠졌기 때문에 location -= 1 해준다.
+        location -= 1
+
+        # 큐에 대기중인 프로세스 중 우선순위가 더 높은 프로세스가 있다면 
+        # 꺼냈던 프로세스를 다시 넣고
+        # 사용자가 요청한 문서의 위치가 큐를 벗어나는 경우를 처리해준다.
+        if l != m:
+            queue.append(l)
+            if location < 0:
+                location = len(queue)- 1
+
+        else:
             answer += 1
-            if location < 0:      # location이 0 이하로 떨어진다면, 이는 큐의 왼쪽 끝을 벗어나는 것을 의미합니다.
+            # location이 0 이하로 떨어진다면, 이는 큐의 왼쪽 끝을 벗어나는 것을 의미
+            if location < 0:
                 break
-            
     return answer
