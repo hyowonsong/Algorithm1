@@ -8,7 +8,9 @@ from collections import Counter
 # 다중집합 만들기 함수
 def make_multiset(string):
     # 딕셔너리 형태로 만들어준다.
-    multiset = Counter()                  
+    multiset = Counter()             
+    # i가 len(string) - 1인 경우, string[i:i+2]는 string[len(string) - 1 : len(string) + 1]이 됩니다.
+    # 이때, string[len(string) + 1]은 문자열의 범위를 벗어나므로, 잘못된 결과나 오류를 발생시킬 수 있습니다.
     for i in range(len(string) - 1):
         # 영문자로 된 글자 쌍만 유효
         if string[i:i+2].isalpha():  
