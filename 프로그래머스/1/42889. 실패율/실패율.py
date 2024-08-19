@@ -1,17 +1,33 @@
-# 실패율
-
 def solution(N, stages):
-    results = {}
-    length = len(stages)
-
-    # 1부터 N까지 스테이지를 하나씩 살펴봄
-    for n in range(1, N+1):
-        if length != 0:  # 만약 남은 플레이어가 있다면
-            count = stages.count(n)  # 해당 스테이지를 클리어하지 못한 플레이어의 수를 센다
-            results[n] = count / length  # 실패율 계산 (클리어하지 못한 플레이어 수 / 현재 스테이지에 도달한 플레이어 수)
-            length -= count  # 남은 플레이어 수 업데이트
+    # 각 스테이지별 실패율을 저장할 리스트
+    failure_rates = []
+    
+    # 전체 사용자 수
+    total_users = len(stages)
+    
+    # 각 스테이지에 대한 실패율 계산
+    for i in range(1, N + 1):
+        # 현재 스테이지에 도달한 사용자 수
+        users_on_stage = stages.count(i)
+        
+        # 실패율 계산
+        if total_users > 0:
+            failure_rate = users_on_stage / total_users
         else:
-            results[n] = 0  # 만약 도달한 플레이어가 없다면 실패율은 0
-
-    # 실패율이 높은 순서로 스테이지를 정렬하여 반환
-    return sorted(results, key=lambda x: results[x], reverse=True)
+            failure_rate = 0
+        
+        # 실패율과 스테이지 번호를 튜플로 저장
+        failure_rates.append((i, failure_rate))
+        
+        # 전체 사용자 수 갱신: 현재 스테이지에 도전한 사용자는 제외
+        total_users -= users_on_stage
+    
+    # 실패율을 기준으로 내림차순 정렬, 실패율이 같으면 스테이지 번호 기준 오름차순 정렬
+    failure_rates.sort(key=lambda x: (-x[1], x[0]))
+    
+    # 결과에서 스테이지 번호만 추출
+    result = []
+    for item in failure_rates:
+        result.append(item[0])
+    
+    return result
