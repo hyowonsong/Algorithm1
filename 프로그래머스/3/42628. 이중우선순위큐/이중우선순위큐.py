@@ -1,8 +1,10 @@
 from heapq import heappush, heappop
 
 def solution(operations):
-    min_heap = []  # 최소 힙을 저장할 리스트
-    max_heap = []  # 최대 힙을 저장할 리스트 (음수 값을 저장하여 최대 힙으로 사용)
+    # 최소 힙을 저장할 리스트
+    # 최대 힙을 저장할 리스트 (음수 값을 저장하여 최대 힙으로 사용)
+    min_heap = []  
+    max_heap = []  
 
     for operation in operations:
         order, number = operation.split()
@@ -11,14 +13,17 @@ def solution(operations):
         if order == "I":
             # 숫자를 최소 힙과 최대 힙에 각각 추가
             heappush(min_heap, number)
+            # heapq 모듈은 최대 힙을 지원하지 않기 때문에 값을 음수로 변환
             heappush(max_heap, -number)
         elif order == "D":
+            # 최대값을 삭제하는 경우: 
             if number == 1 and max_heap:
-                # 최대값을 삭제하는 경우: 최대 힙에서 값을 꺼내고, 해당 값을 최소 힙에서 제거
+                # 최대 힙에서 값을 꺼내고, 해당 값을 최소 힙에서 제거
                 max_value = -heappop(max_heap)
                 min_heap.remove(max_value)
+            # 최소값을 삭제하는 경우:     
             elif number == -1 and min_heap:
-                # 최소값을 삭제하는 경우: 최소 힙에서 값을 꺼내고, 해당 값을 최대 힙에서 제거
+                # 최소 힙에서 값을 꺼내고, 해당 값을 최대 힙에서 제거
                 min_value = heappop(min_heap)
                 max_heap.remove(-min_value)
 
