@@ -10,6 +10,7 @@ def bfs(maps):
     
     # queue가 빌 때까지 반복
     while queue:
+        # x,y 나눠서 popleft() 해줘야
         x, y = queue.popleft()
         # 상하좌우 칸 확인하기
         for i in range(4):
