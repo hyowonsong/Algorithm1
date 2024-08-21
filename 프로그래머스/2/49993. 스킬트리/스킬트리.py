@@ -1,24 +1,21 @@
-# 스킬트리
+# 스킬 트리
 
 def solution(skill, skill_trees):
     answer = 0
 
     for skill_tree in skill_trees:
-        # 순서를 index로 정의(이게 제일 중요!) 해주고 valid 도 정의 
         index = 0
-        valid = True
-
+        
         for s in skill_tree:
             if s in skill:
-                # 만약 차례대로 안에 있으면 index += 1
+                # 만약 현재 스킬이 올바른 위치에 있으면, index를 증가시키고
                 if s == skill[index]:
                     index += 1
                 else:
-                    valid = False
+                    # 올바른 위치가 아닌 경우, 해당 스킬트리는 유효하지 않음
                     break
-
-        # for 문 다 돌고 valid = True 면 answer += 1 
-        if valid:
+        else:
+            # for문을 다 돌았을 때 break 없이 끝나면 유효한 스킬트리
             answer += 1
-        
+    
     return answer
