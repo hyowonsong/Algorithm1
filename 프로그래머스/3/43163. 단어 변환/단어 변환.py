@@ -16,12 +16,25 @@ def solution(begin, target, words):
             return current_count
         
         # 단어 리스트를 순회하며 한 글자 차이나는 단어를 찾음
+        words_to_remove = []  # 방문할 단어를 기록할 리스트
+        
         for word in words:
-            if sum([current_word[i] != word[i] for i in range(len(current_word))]) == 1:
+            # 현재 단어와 비교하여 한 글자만 다를 경우
+            diff_count = 0
+            for i in range(len(current_word)):
+                if current_word[i] != word[i]:
+                    diff_count += 1
+                # 한 글자 초과 다르면 break
+                if diff_count > 1:
+                    break
+            # 한 글자만 다른 경우
+            if diff_count == 1:
                 queue.append((word, current_count + 1))
-                
+                words_to_remove.append(word)  # 방문한 단어를 기록
+        
         # 이미 방문한 단어는 다시 방문하지 않기 위해 제거
-        words = [word for word in words if word != current_word]
+        for word in words_to_remove:
+            words.remove(word)
     
     # 변환할 수 없는 경우, 0 반환
     return 0
