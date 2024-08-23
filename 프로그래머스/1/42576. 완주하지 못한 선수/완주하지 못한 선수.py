@@ -1,5 +1,3 @@
-# 완주하지 못한 선수
-
 def solution(participant, completion):
     # 참가자 이름과 그 수를 딕셔너리(딕셔너리는 {})
     dict = {}
