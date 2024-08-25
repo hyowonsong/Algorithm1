@@ -17,6 +17,7 @@ def solution(n, lost, reserve):
             if i > 1 and students[i-1] > 1:
                 students[i-1] -= 1
                 students[i] += 1
+                
             # 뒷번호 학생에게 빌리기
             elif i < n and students[i+1] > 1:
                 students[i+1] -= 1
