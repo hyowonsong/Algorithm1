@@ -5,7 +5,7 @@ def solution(record):
     
     # 첫 번째 순회: 사용자 ID와 최종 닉네임 매핑
     for r in record:
-        parts = r.split()  # 각 레코드를 공백으로 분리
+        parts = r.split(' ')  # 각 레코드를 공백으로 분리
         action = parts[0]  # 첫 번째 요소는 액션(Enter, Leave, Change)
         user_id = parts[1]  # 두 번째 요소는 사용자 ID
         
@@ -16,7 +16,7 @@ def solution(record):
     
     # 두 번째 순회: 최종 메시지 생성
     for r in record:
-        parts = r.split()  # 각 레코드를 다시 공백으로 분리
+        parts = r.split(' ')  # 각 레코드를 다시 공백으로 분리
         action = parts[0]  # 액션 확인
         user_id = parts[1]  # 사용자 ID 확인
         
