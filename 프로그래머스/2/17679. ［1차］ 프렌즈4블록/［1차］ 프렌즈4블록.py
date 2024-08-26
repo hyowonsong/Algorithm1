@@ -41,8 +41,7 @@ def solution(m, n, board):
             queue = []
             for i in range(m):
                 if board_list[i][j] != ' ':
-                    queue.append(board_list[i][j])
-            
+                    queue.append(board_list[i][j])       
             # 2. 아래에서부터 다시 블록들을 쌓기
             for i in range(m-1, -1, -1):
                  # 쌓을 블록이 남아있으면 맨 마지막 블록부터 꺼내서 쌓기
