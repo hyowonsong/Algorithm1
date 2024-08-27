@@ -1,23 +1,30 @@
-# 숫자 짝궁
-# 두 정수 X,Y 의 임의의 자리에서 공통으로 만들 수 있는 가장 큰 정수는?
+from collections import Counter
 
 def solution(X, Y):
-    answer = []
+    # 각 숫자의 빈도를 카운트
+    count_x = Counter(X)
+    count_y = Counter(Y)
     
-    # 9부터 0까지 역순으로 각 숫자 확인
-    for i in range(9,-1,-1):
-        
-        # X와 Y에서 현재 숫자(digit)의 출현 횟수를 세고, 그 중 작은 값을 선택
-        count = min(X.count(str(i)), Y.count(str(i)))
-        
-        # 선택된 개수(count)만큼 현재 숫자(digit)를 결과 리스트에 추가
-        answer.extend([str(i)] * count)
-
-    if not answer:
+    # 공통 숫자들을 저장할 리스트
+    common_digits = []
+    
+    # 0부터 9까지 숫자를 확인하며 공통된 숫자를 찾음
+    for digit in range(10):
+        digit = str(digit)
+        if digit in count_x and digit in count_y:
+            # 두 수에서 공통으로 나타나는 숫자 중 최소 빈도만큼만 사용
+            common_count = min(count_x[digit], count_y[digit])
+            common_digits.extend([digit] * common_count)
+    
+    # 공통된 숫자가 없으면 -1 반환
+    if not common_digits:
         return "-1"
-        # answer의 첫 숫자가 0이면 모든 공통된 숫자가 0이라는 뜻이므로 "0" 반환
-    if answer[0]  == "0":
+    
+    # 공통된 숫자를 내림차순으로 정렬하여 큰 숫자를 만듦
+    common_digits.sort(reverse=True)
+    
+    # 결과가 '0'으로만 구성되어 있으면 '0' 반환
+    if common_digits[0] == '0':
         return "0"
     
-    # answer 리스트의 모든 숫자를 하나의 문자열로 연결하여 반환
-    return "".join(answer)
+    return "".join(common_digits)
