@@ -17,6 +17,7 @@ def compare(a, b):
         return 0
 
 def solution(numbers):
+    
     # 숫자들을 문자열로 변환
     numbers = list(map(str, numbers))
     numbers.sort(key=cmp_to_key(compare))
@@ -28,5 +29,5 @@ def solution(numbers):
     # 그렇지 않으면 생성된 문자열을 그대로 반환
     if answer[0] == '0':
         return '0'  
-    else :
+    else:
         return answer
