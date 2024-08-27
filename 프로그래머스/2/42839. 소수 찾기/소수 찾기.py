@@ -20,12 +20,12 @@ def solution(numbers):
             nums.add(int(''.join(perm)))
 
     # 소수 개수 세기
-    prime_count = 0
+    count = 0
     for num in nums:
         # 각 숫자에 대해 소수 여부 확인
         if is_prime(num):
             # 소수일 경우 카운트 증가
-            prime_count += 1
+            count += 1
 
     # 찾은 소수의 개수 반환
-    return prime_count
+    return count
