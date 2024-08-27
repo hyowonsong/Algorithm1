@@ -17,7 +17,11 @@ def solution(m, n, board):
         for i in range(m-1):
             for j in range(n-1):
                 # (i, j), (i, j+1), (i+1, j), (i+1, j+1) 블록이 모두 같고 빈 공간이 아닐 경우
-                if (board_list[i][j] == board_list[i][j+1] == board_list[i+1][j] == board_list[i+1][j+1] != ' '):
+                if (board_list[i][j] == 
+                    board_list[i][j+1] == 
+                    board_list[i+1][j] == 
+                    board_list[i+1][j+1] != ' '):
+                    
                     # 해당 블록들의 좌표를 제거 리스트에 추가
                     remove.add((i, j))
                     remove.add((i, j+1))
