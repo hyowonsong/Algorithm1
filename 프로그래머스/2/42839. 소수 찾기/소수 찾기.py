@@ -1,16 +1,17 @@
 from itertools import permutations
 
-def solution(numbers):
-    def is_prime(n):
-        if n < 2:
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
             return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-    
+    return True
+
+def solution(numbers):
     # 모든 가능한 숫자 조합 생성
     nums = set()
+    # 0자리 숫자는 숫자가 아니기 때문에 고려할 필요가 없습니다.
     for i in range(1, len(numbers) + 1):
         # numbers에서 i개의 숫자를 선택하여 만들 수 있는 모든 순열 생성
         perms = permutations(numbers, i)
