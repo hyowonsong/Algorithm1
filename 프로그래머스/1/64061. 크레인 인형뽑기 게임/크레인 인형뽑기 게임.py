@@ -1,18 +1,29 @@
 def solution(board, moves):
-    answer = 0
-    stack = []  
-
-    for i in moves:  # 크레인의 움직임을 순회
-        for j in range(len(board)):  # 보드의 세로 길이만큼 반복
-            if board[j][i-1] != 0:  # 현재 위치에 인형이 있다면
-                stack.append(board[j][i-1])  # 해당 인형을 스택에 추가
-                board[j][i-1] = 0  # 뽑은 인형의 위치를 0으로 변경
-
-                if len(stack) > 1:  # 스택에 2개 이상의 인형이 있고
-                    if stack[-1] == stack[-2]:  # 최근에 뽑은 두 인형이 같다면
-                        stack.pop(-1)  # 스택에서 제거
-                        stack.pop(-1)
-                        answer += 2  # 사라진 인형 개수 증가
-                break  # 인형을 뽑았으므로 다음 move로 넘어감
-
-    return answer  # 사라진 인형의 총 개수 반환
+    # 바구니를 초기화
+    basket = []
+    # 인형의 개수를 저장할 변수
+    count = 0
+    
+    # board의 크기
+    n = len(board)
+    
+    # moves 배열의 각 위치를 순회
+    for move in moves:
+        col = move - 1  # 0-based index로 변환
+        # 해당 열에서 인형을 꺼내기
+        for row in range(n):
+            if board[row][col] != 0:
+                # 꺼낸 인형
+                doll = board[row][col]
+                # 해당 위치를 빈 칸으로 설정
+                board[row][col] = 0
+                # 바구니에 인형 추가
+                # 마지막 인형과 같은 경우 터트리기
+                if basket and basket[-1] == doll:
+                    basket.pop()  
+                    count += 2  # 인형 두 개의 개수를 더함
+                else:
+                    basket.append(doll)
+                break
+    
+    return count
