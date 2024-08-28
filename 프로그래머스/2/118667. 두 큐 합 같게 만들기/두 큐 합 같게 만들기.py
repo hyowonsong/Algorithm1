@@ -12,13 +12,13 @@ def solution(queue1, queue2):
     # 목표 합
     target = total // 2
     
-    # 두 큐를 deque로 변환 후 양쪽에서 pop,append 효율적으로 수행할 수 있게 함
+    # 두 큐를 deque로 변환 후 양쪽에서 pop,append 효율적으로 수행
     q1 = deque(queue1)
     q2 = deque(queue2)
     
     # 포인터 초기화
     count = 0
-    max_iterations = len(q1) * 3
+    max_iterations = len(q1) * 4
     
     while total1 != target:
         if total1 > target:
