@@ -14,17 +14,16 @@ def solution(survey, choices):
         7: 3   # 매우 동의
     }
     
+    # survey, choices 따로 for문 돌리기 
     for i in range(len(survey)):
         s = survey[i]
         c = choices[i]
         
-        # 선택지에 따른 점수
-        score = choice_scores[c]
         
         if c < 4:  # 비동의 관련 성격
-            scores[s[0]] += score
+            scores[s[0]] += choice_scores[c]
         elif c > 4:  # 동의 관련 성격
-            scores[s[1]] += score
+            scores[s[1]] += choice_scores[c]
 
     # 성격 유형을 결정하기 위한 결과 문자열
     result = ""
