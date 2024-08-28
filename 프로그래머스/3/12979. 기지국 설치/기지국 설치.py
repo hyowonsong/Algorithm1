@@ -1,7 +1,9 @@
 def solution(n, stations, w):
     answer = 0    
-    position = 1    # 현재 검사 중인 아파트 위치
-    index = 0       # 현재 확인 중인 기존 기지국의 인덱스
+    # 현재 검사 중인 아파트 위치
+    position = 1    
+    # 현재 확인 중인 기존 기지국의 인덱스
+    index = 0       
 
     while position <= n:  # 모든 아파트를 검사할 때까지 반복
         # 현재 기지국의 위치가 기존 기지국의 범위 안에 있고
