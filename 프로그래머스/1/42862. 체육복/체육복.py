@@ -12,6 +12,7 @@ def solution(n, lost, reserve):
     
     # 체육복 빌려주기
     for i in range(1, n+1):
+        # 여기 students[i] == 0 이거 추가해줘야
         if students[i] == 0:
             # 앞번호 학생에게 빌리기
             if i > 1 and students[i-1] > 1:
@@ -27,7 +28,7 @@ def solution(n, lost, reserve):
     # 체육복이 있는 학생 수 세기
     count = 0
     for i in range(1, n+1):
-        if students[i] > 0:
+        if students[i] != 0:
             count += 1
     
     return count
