@@ -2,15 +2,10 @@ import heapq  # 우선순위 큐를 사용하기 위해 heapq 모듈을 import�
 
 def solution(N, road, K):
     # 그래프를 인접 리스트로 표현합니다.
-    # 그래프는 각 마을의 인덱스를 기준으로 연결된 마을과 도로의 시간을 저장합니다.
-    graph = []
-    for i in range(N + 1):
-        graph.append([])
-
+    graph = [[] for _ in range(N + 1)]
     
     # 도로 정보를 기반으로 그래프를 구성합니다.
     for a, b, c in road:
-        # 마을 a와 b를 연결하는 도로 정보 (b, c)와 (a, c)를 그래프에 추가합니다.
         graph[a].append((b, c))
         graph[b].append((a, c))
     
