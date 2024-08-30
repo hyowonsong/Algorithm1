@@ -1,22 +1,23 @@
-### 2309 일곱 난쟁이
+# 일곱 난쟁이
 
-# 일곱 난쟁이의 키의 합이 100이다.
-
-array = []
+heights = []
 for i in range(9):
-    array.append(int(input()))
+    heights.append(int(input()))
+    heights.sort()
 
-array.sort()
+# 전체 키의 합
+total = sum(heights)
 
-sum1 = sum(array)
-
-# 만약 모두다 더하고 2명을 뺐을 때 그 값이 100이라면 2개를 뺀 나머지 값들 출력
-for i in range(len(array)):
-    for j in range(i + 1, len(array)):
-        if sum1 - array[i] - array[j] == 100:
-            for k in range(len(array)):
-                if k == i or k == j:
-                    pass
-                else:
-                    print(array[k])
-            exit()
+# 두 명의 난쟁이를 찾기
+found = False
+for i in range(9):
+    for j in range(i + 1, 9):
+        if total - heights[i] - heights[j] == 100:
+            # i와 j를 제외한 나머지 일곱 난쟁이의 키 출력
+            for k in range(9):
+                if k != i and k != j:
+                    print(heights[k])
+            found = True
+            break
+    if found:
+        break
