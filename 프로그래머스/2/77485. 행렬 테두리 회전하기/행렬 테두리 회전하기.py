@@ -1,6 +1,18 @@
 def solution(rows, columns, queries):
     # 행렬 초기화
-    matrix = [[0 for _ in range(columns)] for _ in range(rows)]
+    matrix = []
+
+    # rows만큼 반복하여 각 행을 생성합니다.
+    for i in range(rows):
+        # 각 행을 저장할 빈 리스트를 생성합니다.
+        row = []
+        # columns만큼 반복하여 각 열의 값을 추가합니다.
+        for j in range(columns):
+            # 각 열의 값을 0으로 초기화하여 추가합니다.
+            row.append(0)
+        # 생성된 행을 matrix에 추가합니다.
+        matrix.append(row)
+        
     for i in range(rows):
         for j in range(columns):
             matrix[i][j] = i * columns + j + 1
