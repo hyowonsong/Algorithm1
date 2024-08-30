@@ -8,8 +8,9 @@ def solution(arrayA, arrayB):
     gcdB = reduce(gcd, arrayB)
     
     # arrayB의 모든 원소가 gcdA로 나눠지는지 확인
-    def check_divisibility(gcd_val, array):
-        for num in array:
+    # 한쪽만 성립해야하기 때문에 둘다 성립되는 아래의 경우 return False 해준다.
+    def check_divisibility(gcd_val, arrayX):
+        for num in arrayX:
             if num % gcd_val == 0:
                 return False
         return True
