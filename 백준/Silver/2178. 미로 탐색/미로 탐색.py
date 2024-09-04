@@ -1,3 +1,5 @@
+# 미로탐색
+
 from collections import deque
 
 # N,M을 공백으로 구분하여 입력받기
@@ -15,8 +17,7 @@ dy = [0, 0, -1, 1]
 # BFS 소스코드 구현
 def bfs(x, y):
     # 큐 구현을 위해 deque 라이브러리 사용
-    queue = deque()
-    queue.append((x, y))
+    queue = deque([(x, y)])  # 초기 위치를 바로 큐에 추가
 
     # 큐가 빌 때까지 반복
     while queue:
