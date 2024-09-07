@@ -1,4 +1,5 @@
 class Solution {
+    // String 반환
     public String solution(int num){
         String answer = "";
 
