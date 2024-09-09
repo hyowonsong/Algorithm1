@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 
 class Solution {
     // 주어진 문자열이 올바른 괄호 문자열인지 확인하는 함수
-    private static boolean isValid(String s) {
+    public static boolean isValid(String s) {
         ArrayDeque<Character> stack = new ArrayDeque<>();
 
         for (char c : s.toCharArray()) {
@@ -12,6 +12,7 @@ class Solution {
                 // 닫힌 괄호인데 스택이 비었거나 짝이 맞지 않으면 false
                 if (stack.isEmpty()) return false;
                 char openBracket = stack.pop();
+                
                 if (c == ')' && openBracket != '(') return false;
                 if (c == ']' && openBracket != '[') return false;
                 if (c == '}' && openBracket != '{') return false;
@@ -23,7 +24,7 @@ class Solution {
     }
 
     // 문자열을 왼쪽으로 한 칸 회전시키는 함수
-    private static String rotate(String s) {
+    public static String rotate(String s) {
         // 문자열 s에서 인덱스 1부터 끝까지 문자열을 반환합니다.
         // s = "abcde" 라면 s.substring(1) 은 "bcde" 를 반환합니다.
         // s.charAt(0) 은 문자열 s의 인덱스 0, 즉, 첫번째 문자를 반환
