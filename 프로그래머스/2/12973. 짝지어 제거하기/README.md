@@ -1,10 +1,10 @@
 # [level 2] 짝지어 제거하기 - 12973 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12973?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12973) 
 
 ### 성능 요약
 
-메모리: 62.7 MB, 시간: 50.70 ms
+메모리: 79 MB, 시간: 76.19 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 09월 08일 15:38:44
+2024년 09월 09일 16:44:41
 
 ### 문제 설명
 

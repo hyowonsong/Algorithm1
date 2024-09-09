@@ -23,6 +23,10 @@ class Solution {
         }
 
         // 스택이 비어 있으면 모든 짝이 제거된 것이므로 1 반환
-        return stack.isEmpty() ? 1 : 0;
+        if (stack.isEmpty()) {
+            return 1;  // 스택이 비어 있으면 1을 반환
+        } else {
+            return 0;  // 스택이 비어 있지 않으면 0을 반환
+        }
     }
 }
