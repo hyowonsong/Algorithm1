@@ -2,6 +2,8 @@ import java.util.ArrayDeque;
 
 class Solution {
     boolean solution(String s) {
+        // ArrayDeque 객체를 생성하여 stack 변수에 할당
+        // Deque 에는 크게 ArrayDeque 와 LinkedList 가 존재.
         ArrayDeque<Character> stack = new ArrayDeque<>();
 
         for (char c : s.toCharArray()) {
