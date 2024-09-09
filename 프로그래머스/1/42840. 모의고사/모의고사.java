@@ -1,6 +1,4 @@
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Solution {
     public int[] solution(int[] answers) {
@@ -29,18 +27,13 @@ public class Solution {
         int maxScore = Math.max(score[0], Math.max(score[1], score[2]));
 
         // 가장 높은 점수를 받은 사람을 리스트에 추가
-        List<Integer> topScorers = new ArrayList<>();
+        ArrayList<Integer> answer = new ArrayList<>();
         for (int i = 0; i < score.length; i++) {
             if (score[i] == maxScore) {
-                topScorers.add(i + 1); // 수포자는 1번부터 시작하므로 인덱스에 +1
+                answer.add(i + 1); // 수포자는 1번부터 시작하므로 인덱스에 +1
             }
         }
 
-        // 리스트를 배열로 변환하여 반환
-        int[] result = new int[topScorers.size()];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = topScorers.get(i);
-        }
-        return result;
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
