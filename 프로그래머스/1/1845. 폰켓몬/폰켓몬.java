@@ -9,11 +9,13 @@ class Solution {
         HashSet<Integer> Pokemons = new HashSet<>();
 
         // 폰켓몬 종류를 HashSet에 추가 (중복은 자동으로 제거됨)
+        // add : Set 에 요소를 추가할 때 사용되며, 중복된 요소는 추가X
+        // put : Map 에 키와 값을 추가하거나 업데이트 할 때 사용
         for (int num : nums) {
             Pokemons.add(num);
         }
 
-        // 선택할 수 있는 폰켓몬의 종류 수는 maxSelection 과 uniquePokemons 크기 중 작은 값
+        // 폰켓몬의 종류 수는 maxSelection 과 Pokemons 크기 중 작은 값
         return Math.min(Pokemons.size(), maxSelection);
     }
 }
