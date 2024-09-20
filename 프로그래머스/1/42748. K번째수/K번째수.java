@@ -10,6 +10,7 @@ class Solution {
             // i번째 command 를 가져옴
             int[] command = commands[i];
             int start = command[0] - 1; // 0-based index 로 변환
+            // Arrays.copyOfRange() 는 종료 인덱스를 포함하지 않기 때문에, 원하는 범위가 맞아 떨어집니다.
             int end = command[1];
             int k = command[2] - 1; // 0-based index 로 변환
 
