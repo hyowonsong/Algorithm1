@@ -3,24 +3,25 @@ import java.util.ArrayList;
 
 // 가장 큰 수
 public class Solution {
+     // 0 또는 양의 정수가 주어졌을 때 정수를 이어 붙여 만들 수 있는 가장 큰 수 알아내기
     // 각 숫자를 앞뒤로 붙여보고 큰 경우를 반환
     public String solution(int[] numbers){
         // int 형 정수 배열을 문자열로 바꾸어 list 에 저장
         ArrayList<String> list = new ArrayList<>();
-        for (int number : numbers) {
+        for (int number:numbers){
             list.add(String.valueOf(number));
         }
 
         // 조합하여 비교하여 더 큰 수를 기준으로 내림차순 정렬합니다.
         list.sort((o1, o2) -> {
-            int a = Integer.parseInt(o1 + o2);
-            int b = Integer.parseInt(o2 + o1);
-            return Integer.compare(b, a);
+            int a = Integer.parseInt(o1+o2);
+            int b = Integer.parseInt(o2+o1);
+            return Integer.compare(b,a);
         });
 
         // 정렬된 수를 나열하여 문자열로 만듭니다.
         StringBuilder sb = new StringBuilder();
-        for (String s : list) {
+        for (String s : list){
             sb.append(s);
         }
 
