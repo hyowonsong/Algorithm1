@@ -1,34 +1,39 @@
 import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
-class Solution {
-    public static List<Integer> solution(int[] progresses, int[] speeds) {
-        List<Integer> answer = new LinkedList<>();
-        ArrayDeque<Integer> queue = new ArrayDeque<>();
+// 기능 개발
+public class Solution {
+    public int[] solution(int[] progresses, int[] speeds){
+        Queue<Integer> answer = new ArrayDeque<>();
 
-        // 각 기능의 배포까지 걸리는 날 수를 계산하여 큐에 저장
-        for (int i = 0; i < progresses.length; i++) {
-            int remainingWork = 100 - progresses[i];
-            int days = (remainingWork + speeds[i] - 1) / speeds[i];  // 올림 연산
-            queue.add(days);
+        int n = progresses.length;
+        // 각 작업의 배포 가능일 계산
+        int[] daysLeft = new int[n];
+        for (int i = 0; i<n; i++){
+            daysLeft[i] = (int) Math.ceil((100.0 - progresses[i])/speeds[i]);
         }
 
-        // 배포일 계산
-        // 큐가 비어 있지 않을 때까지 계산
-        while (!queue.isEmpty()) {
-            int current = queue.poll();  // 현재 기능의 배포일
-            int count = 1;
+        // 배포될 작업의 수 카운트
+        int count = 0;
 
-
-            //큐가 비어 있지 않고,큐의 첫 번째 요소가 현재 배포일 보다 작거나 같은 경우
-            while (!queue.isEmpty() && queue.peek() <= current) {
-                // 해당 요소를 제거
-                queue.poll();
+        // 현재 배포될 작업 중 가장 늦게 배포될 작업의 가능일
+        int maxDay = daysLeft[0];
+        
+        // 배포 가능일이 가장 늦은 배포일보다 빠르면
+        for (int i = 0; i<n; i++) {
+            if (daysLeft[i] <= maxDay) {
                 count++;
             }
-            answer.add(count);
+
+            // 배포 예정일이 기존 배포일보다 느리면
+            else {
+                answer.add(count);
+                count = 1;
+                maxDay = daysLeft[i];
+            }
         }
-        return answer;
+        // 마지막으로 카운트된 작업들을 함께 배포
+        answer.add(count);
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
