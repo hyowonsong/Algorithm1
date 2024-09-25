@@ -23,6 +23,7 @@ public class Solution {
                 }
             }
 
+            // 할인하는 상품의 개수가 원하는 수량과 일치하면 정답 변수에 1 추가
             if (discount10d.equals(wantMap)) {
                 answer++;
             }
