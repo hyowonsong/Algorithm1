@@ -11,9 +11,9 @@ class Solution {
                 // 열린 괄호는 스택에 넣음
                 stack.push(c);
             } else if (c == ')') {
-                // 닫힌 괄호는 스택에서 열린 괄호를 꺼냄
+                //스택이 비어있거나 스택을 빼내었을 때 ( 가 아니라면 false 반환
                 if (stack.isEmpty() || stack.pop() != '(') {
-                    return false; // 스택이 비었거나 짝이 맞지 않으면 false
+                    return false; 
                 }
             }
         }
