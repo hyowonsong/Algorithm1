@@ -1,51 +1,50 @@
 # 특정 거리의 도시 찾기
-import sys
-input = sys.stdin.readline
+# 1~N 번까지의 도시와 M개의 단방향 도로가 존재. 도로의 거리는 1
+# 특정한 도시 X로부터 출발하여, 최단 거리가 K인 모든 도시의 번호 출력
+
 from collections import deque
 
-# 도시의 개수, 도로의 개수, 거리 정보, 출발 도시의 번호 입력
-n, m, k, x = map(int, input().split())
+import sys
+input = sys.stdin.readline
 
-# 도로 정보를 저장할 리스트 초기화
-road = [[] for _ in range(n + 1)]
-# 방문 여부를 확인하는 리스트 초기화
-visited = [False] * (n + 1)
-# 출발 도시는 방문한 것으로 처리
-visited[x] = True
+# 도시의 개수 N, 도로의 개수 M, 거리 정보 K, 출발 도시 번호 X
+n,m,k,x = map(int,input().split())
+# M개의 줄에 걸쳐서 두 개의 자연수 a,b 주어지며, 각 자연수는 공백
+graph = [[] for _ in range(n + 1)]
 
-# 도로 정보 입력 및 저장
+# 모든 도로 정보 입력 받기
 for _ in range(m):
     a, b = map(int, input().split())
-    # 단방향 도로를 road 리스트에 저장
-    road[a].append(b)
+    # graph[1] = [2,3] 이렇게 될 수 있다.
+    graph[a].append(b)
 
-# BFS로 최단 거리 찾기
-result = [-1] * (n + 1)
-result[x] = 0
+# 모든 도시에 대한 최단 거리 초기화
+distance = [-1] *(n+1)
+# 출발 도시까지의 거리는 0으로 설정
+distance[x] = 0 
 
-def bfs(x, road):
-    # 출발 도시를 큐에 넣고 시작
-    queue = deque([x])
-    while queue:
-        v = queue.popleft()
-        # 현재 도시와 연결된 도시들을 확인
-        for i in road[v]:
-            # 방문하지 않은 도시라면 방문 여부를 체크하고 거리 정보 갱신
-            if not visited[i]:
-                visited[i] = True
-                result[i] = result[v] + 1
-                queue.append(i)
+# 너비 우선 탐색 수행
+queue = deque([x])
 
-# BFS 함수 호출
-bfs(x, road)
+while queue:
+    # 1번 도시에서 출발, 큐에는 [1], distance[1] = 0
+    now = queue.popleft()
+    # 현재 도시에서 이동할 수 있는 모든 도시를 확인
+    for next_node in graph[now]:
+        # 아직 방문하지 않은 도시라면
+        if distance[next_node] == -1:
+            # 최단 거리 갱신
+            distance[next_node] = distance[now] + 1
+            queue.append(next_node)
 
-# 찾고자 하는 거리에 해당하는 도시가 있는지 확인 후 출력
-exist = False
-for i in range(1, n+1):
-    if result[i] == k:
-        exist = True
+# 최단 거리가 K인 모든 도시의 번호를 오름차순으로 출력
+check = False
+for i in range(1,n+1):
+    if distance[i] == k:
         print(i)
+        check = True
 
-# 찾고자 하는 거리에 해당하는 도시가 없으면 -1 출력
-if not exist:
+# 만약 최단 거리가 k인 도시가 없다면, -1 출력
+# 만약 check가 True이면 -1을 출력하지 않고 종료됩니다. 
+if check == False:
     print(-1)
