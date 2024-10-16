@@ -1,25 +1,21 @@
-def cnt(N, K, arr, idx=0, cur_sum=0):
-    # 종료 조건: 리스트의 끝에 도달했을 때
-    if idx == N:
-        if cur_sum == K:
-            return 1  
-        else:
-            return 0
+def dfs(n, sm):
+    global ans
+    # 가지치기
+    if K<sm:
+        return
     
-    # 현재 숫자를 선택하지 않은 경우와 선택한 경우를 모두 탐색
-    skip = cnt(N, K, arr, idx + 1, cur_sum)
-    take = cnt(N, K, arr, idx + 1, cur_sum + arr[idx])
-    
-    # 두 경우의 수를 더한 값을 반환
-    return skip + take
+    if n==N:
+        if sm==K:
+            ans += 1
+        return
 
+    dfs(n+1, sm+lst[n]) # 사용하는 경우
+    dfs(n+1, sm)        # 사용하지 않는 경우
 
-T = int(input())  
-
-for t in range(T):
-    N, K = map(int, input().split())  
-    arr = list(map(int, input().split())) 
-    
-    result = cnt(N, K, arr)  # 부분 수열의 합이 K인 경우의 수 계산
-    
-    print(f'#{t + 1} {result}')
+T = int(input())
+for test_case in range(1, T + 1):
+    N, K = map(int, input().split())
+    lst = list(map(int, input().split()))
+    ans = 0
+    dfs(0, 0)
+    print(f'#{test_case} {ans}')
