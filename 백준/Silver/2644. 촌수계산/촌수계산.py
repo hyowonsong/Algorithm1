@@ -1,28 +1,33 @@
-# 2644 촌수계산
+# 단지번호 붙이기
+def bfs(s,e):
+    q = []
+    v = [0] * (N+1)
 
-import sys
-input = sys.stdin.readline
-from collections import deque
+    q.append(s)
+    v[s] = 1
 
-def bfs(curr_node):                                     # bfs 정의
-    queue = deque()
-    queue.append(curr_node)
-    while queue:
-        x = queue.popleft()
-        for i in graph[x]:
-            if visited[i] == -1:                       # graph에 방문했을 때 -1이 나오면 
-                visited[i] = visited[x] + 1            # 방문했던 노드에 +1
-                queue.append(i)
+    while q:
+        c = q.pop(0)
+        if c == e:
+            return v[e] - 1
+        
+        # c와 연결된 번호인 경우 미방문이면 방문!
+        for n in adj[c]:
+            if not v[n]:
+                q.append(n)
+                v[n] += v[c] + 1
 
+    # 이곳의 코드를 실행했다면 찾지못함
+    return -1
 
-n = int(input())
-start, end = map(int,input().split())
-graph = [[] for _ in range(n+1)]
-visited = [-1 for _ in range(n+1)]
-for _ in range(int(input())):
-    a,b = map(int,input().split())
-    graph[a].append(b)                                 # 양방향
-    graph[b].append(a)
-visited[start] = 0
-bfs(start)
-print(visited[end])
+N = int(input())
+S,E = map(int, input().split())
+M = int(input())
+adj = [[] for _ in range(N+1)]
+for _ in range(M):
+    p, c = map(int, input().split())
+    adj[p].append(c)
+    adj[c].append(p)
+
+ans = bfs(S,E)
+print(ans)
