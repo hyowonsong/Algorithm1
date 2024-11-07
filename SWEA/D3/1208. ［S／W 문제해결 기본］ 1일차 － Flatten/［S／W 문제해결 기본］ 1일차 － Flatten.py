@@ -1,21 +1,15 @@
-T = 10  
-for i in range(1, T + 1):
-    # 덤프 횟수
-    n = int(input())
-    dumps = list(map(int, input().split()))
+# Flatten
 
-    # 주어진 덤프 횟수만큼 작업 수행
-    for _ in range(n):
-        # 최고점에서 1을 빼고, 최저점에 1을 더한다
-        max_index = dumps.index(max(dumps))
-        min_index = dumps.index(min(dumps))
-        
-        dumps[max_index] -= 1
-        dumps[min_index] += 1
-
-        # 최고점과 최저점 차이가 1이하가 되면 평탄화 완료
-        if max(dumps) - min(dumps) <= 1:
-            break
-
-    # 결과 출력
-    print(f'#{i} {max(dumps) - min(dumps)}')
+T = 10
+for test_case in range(1,T+1):
+    N = int(input())
+    # 계속 최저에 한개씩 넣어주고 다시 최저를 찾아서 구하기 
+    lst = list(map(int, input().split()))
+    ans = 100
+    for _ in range(N):
+        lst.sort()
+        lst[0] += 1
+        lst[-1] -= 1
+        if ans> max(lst)-min(lst):
+            ans = max(lst)-min(lst)
+    print(f'#{test_case} {ans}')
