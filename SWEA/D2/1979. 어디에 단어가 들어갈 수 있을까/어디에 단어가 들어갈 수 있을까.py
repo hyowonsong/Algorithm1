@@ -1,39 +1,35 @@
-# 어디에 단어가 들어갈 수 있을까
-
 T = int(input())
-
-for t in range(1, T+1):
-    N, M = map(int, input().split())
-    
-    graph = [list(map(int,input().split())) for _ in range(N)]
+for test_case in range(1, T + 1):
+    N, K = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(N)]
 
     count = 0
 
-    # 가로 검사
+    # 가로 방향 검사
     for i in range(N):
-        length = 0  # 연속된 1의 길이
+        rows_count = 0
         for j in range(N):
-            if graph[i][j] == 1:
-                length += 1
+            if arr[i][j] == 1:
+                rows_count += 1
             else:
-                if length == M:  # 길이가 M인 경우 자리를 셈
+                if rows_count == K:
                     count += 1
-                length = 0  # 0이 나오면 길이 초기화
-        if length == M:  # 마지막 칸까지 연속된 경우도 검사
+                rows_count = 0  # 1이 아니므로 초기화
+        if rows_count == K:  # 마지막에 연속된 1이 K개면 count 증가
             count += 1
-    
-    # 세로 검사
+
+    # 세로 방향 검사
     for j in range(N):
-        length = 0  # 연속된 1의 길이
+        cols_count = 0
         for i in range(N):
-            if graph[i][j] == 1:
-                length += 1
+            if arr[i][j] == 1:
+                cols_count += 1
             else:
-                if length == M:  # 길이가 K인 경우 자리를 셈
+                if cols_count == K:
                     count += 1
-                length = 0  # 0이 나오면 길이 초기화
-        if length == M:  # 마지막 칸까지 연속된 경우도 검사
+                cols_count = 0  # 1이 아니므로 초기화
+        if cols_count == K:  # 마지막에 연속된 1이 K개면 count 증가
             count += 1
-    
+
     # 결과 출력
-    print(f'#{t} {count}')
+    print(f'#{test_case} {count}')
