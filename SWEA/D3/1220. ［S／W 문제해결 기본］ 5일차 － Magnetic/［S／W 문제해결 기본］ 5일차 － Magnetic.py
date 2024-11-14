@@ -1,5 +1,3 @@
-# magnetic
-
 T = 10
 for test_case in range(1, T + 1):
     N = int(input())
@@ -10,7 +8,7 @@ for test_case in range(1, T + 1):
     for lst in arr_t:       # 행단위로 처리
         prev = 0
         for n in lst:
-            if n:
+            if n != 0:
                 if n==2 and prev==1:
                     ans += 1
                 prev = n
