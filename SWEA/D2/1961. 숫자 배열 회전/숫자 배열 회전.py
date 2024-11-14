@@ -1,24 +1,22 @@
-T = int(input())
+# 숫자 배열 회전
+# 2차원 배열 arr를 90도씩 회전시키는 함수를 구현
 
-for t in range(1, T+1):
-    N = int(input())
-
-    matrix = [list(map(int, input().split())) for _ in range(N)]
-
-    # 90도, 180도, 270도 회전된 결과를 저장할 리스트
-    rotate_90 = [[0] * N for _ in range(N)]
-    rotate_180 = [[0] * N for _ in range(N)]
-    rotate_270 = [[0] * N for _ in range(N)]
-    
-    # 회전 계산
+def rotate(arr):
+    arrR = [[0]*N for _ in range(N)]
     for i in range(N):
         for j in range(N):
-            rotate_90[j][N-1-i] = matrix[i][j]     # 90도 회전
-            rotate_180[N-1-i][N-1-j] = matrix[i][j] # 180도 회전
-            rotate_270[N-1-j][i] = matrix[i][j]    # 270도 회전
-    
-    
-    print(f'#{t}')
+            arrR[i][j] = arr[N-1-j][i]
+    return arrR
+
+T = int(input())
+for test_case in range(1,T+1):
+    N = int(input())
+    arr = [list(map(int,input().split())) for _ in range(N)]
+
+    arr1 = rotate(arr)
+    arr2 = rotate(arr1)
+    arr3 = rotate(arr2)
+
+    print(f'#{test_case}')
     for i in range(N):
-        # 회전된 행렬들 중 같은 행끼리 출력
-        print(''.join(map(str, rotate_90[i])), ''.join(map(str, rotate_180[i])), ''.join(map(str, rotate_270[i])))
+        print(f'{"".join(map(str, arr1[i]))} {"".join(map(str, arr2[i]))} {"".join(map(str, arr3[i]))}')
