@@ -1,15 +1,16 @@
-# 올바른 괄호
-
 def solution(s):
     stack = []
-    
+
     for i in s:
-        if i == '(':
+        if i == '(':  
             stack.append(i)
-        else:
-            if stack == []:  # 괄호 짝이 ')'로 시작하면 False 반환
-                return False
-            else:
-                stack.pop()  # '('가 ')'와 짝을 이루면 stack에서 '(' 하나 제거
-    
-    return stack==[]
+        elif i == ')' and stack and stack[-1] == '(':
+            stack.pop()
+        else:  
+            return False
+
+    # 스택이 비어있으면 True, 남아 있으면 False
+    if len(stack) == 0:
+        return True
+    else:
+        return False
