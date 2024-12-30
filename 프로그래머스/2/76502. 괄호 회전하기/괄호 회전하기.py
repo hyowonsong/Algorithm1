@@ -12,8 +12,9 @@ def bracket(s):
                     stack.pop()
                 else: 
                     stack.append(i)
+                    
         if len(stack) == 0:
-            return 1
+            return True
         else:
             return 0
 
