@@ -1,16 +1,22 @@
+# 1. 한 번에 최대 2명씩 밖에 탈 수 없고, 무게 제한도 있다.
+# 2.구명보트를 최대한 적게 사용하여 모든 사람 구출
+# 3. 모든 사람을 구출하기 위해 필요한 구명보트 개수의 최솟값 return
+# left, right로 나누어서 구하는 방법
+
 def solution(people, limit):
-    answer = 0  
+
     people.sort()
-    
+    answer = 0
+
     left = 0 
     right = len(people) - 1  
-    
-    # while 문을 사용해야
+
     while left <= right:
         if people[left] + people[right] <= limit:
-            # 가장 가벼운 사람과 가장 무거운 사람이 함께 탈 수 있으면
-            left += 1  # 가장 가벼운 사람을 태웁니다.
-        right -= 1  # 가장 무거운 사람을 태웁니다.
-        answer += 1  # 보트 하나를 사용합니다.
+            left += 1  
+        
+        # 가장 무거운 사람은 항상 보트에 태웁니다.(이건 default 값)
+        right -= 1
+        answer += 1  # 보트를 하나 사용합니다.
     
     return answer
