@@ -15,14 +15,14 @@ def solution(k, tangerine):
     dict_list = sorted(dict.values(), reverse=True)
     
     total = 0
-    kinds = 0
+    answer = 0
     
     # 빈도가 높은 순서대로 귤을 선택(values 값만 가져옴)
-    for count in dict_list:
-        total += count
-        kinds += 1
+    for i in dict_list:
+        total += i
+        answer += 1
         # 수확한 귤 판매하는 것보다 total이 많으면 break
         if total >= k:
             break
     
-    return kinds
+    return answer
