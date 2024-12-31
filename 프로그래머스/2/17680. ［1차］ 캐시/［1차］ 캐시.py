@@ -7,6 +7,7 @@ def solution(cacheSize, cities):
     cache = deque(maxlen=cacheSize)
 
     for city in cities:
+        # 반드시 소문자로 전부 통일해야!
         city_lower = city.lower()
 
         # 캐시 히트이면
