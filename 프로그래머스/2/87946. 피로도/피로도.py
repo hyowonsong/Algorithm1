@@ -1,23 +1,18 @@
-from itertools import permutations
+def dfs(k, dungeons, visited, count):
+    # 현재 탐험한 던전 수를 기준으로 최대값 초기화
+    max_count = count 
+
+    for i in range(len(dungeons)):
+        # 최소 필요 피로도 조건을 만족하면 탐험
+        if not visited[i] and k >= dungeons[i][0]:  
+            visited[i] = True
+            # max_count와 dfs 중 더 큰 것을 선택
+            max_count = max(max_count, dfs(k - dungeons[i][1], dungeons, visited, count + 1))
+            # 백트래킹 : 다른 경로에서 해당 던전을 다시 탐험할 수 있도록 설정
+            visited[i] = False  
+
+    return max_count
 
 def solution(k, dungeons):
-    max_dungeons = 0
-    
-    # 던전들의 순서를 모두 조합하여 확인
-    for perm in permutations(dungeons):
-        current_fatigue = k
-        count = 0
-        
-        # 던전들의 순서 조합인 perm을 for문으로 돌린다. 
-        for dungeon in perm:
-            # 던전을 min_fatigue, consume_fatigue 로 정의
-            min_fatigue, consume_fatigue = dungeon
-            # 현재 피로도로 해당 던전을 탐험할 수 있는지 확인
-            if current_fatigue >= min_fatigue:
-                count += 1
-                current_fatigue -= consume_fatigue
-                
-        # 최대 던전 수 업데이트
-        max_dungeons = max(max_dungeons, count)
-    
-    return max_dungeons
+    visited = [False] * len(dungeons)  # 던전 방문 여부 저장
+    return dfs(k, dungeons, visited, 0)
