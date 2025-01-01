@@ -1,22 +1,24 @@
 # 전화번호 목록
 
+
 def solution(phone_book):
-    # 해시 맵 초기화
-    hash_map = {}
+    dict = {}
 
     # 각 전화번호의 해시 값을 계산하여 해시 맵에 저장
-    for phone_number in phone_book:
-        hash_map[phone_number] = True
+    for i in phone_book:
+        dict[i] = True
 
     # 각 전화번호의 접두어가 해시 맵에 있는지 확인
-    for phone_number in phone_book:
+    for i in phone_book:
         prefix = ""
-        for digit in phone_number:
+        for digit in i:
             # prefix라는 변수에 digit을 하나씩 추가하여 접두어 형성         
             prefix += digit      
             
             # 접두어가 해시 맵에 있다면 해당 전화번호는 다른 번호의 접두어
-            if prefix != phone_number and prefix in hash_map:
+            # 이깨, 자기 자신인 i는 빼고 체크해야 한다. 
+            # 자기 자신을 접두어로 판단하지 않기 위해서.
+            if prefix != i and prefix in dict:
                 return False
     
     return True
