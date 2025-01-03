@@ -10,12 +10,12 @@ def is_prime(num):
 
 def solution(n, k):
     answer = 0
-    # 반드시 converted 정의해줘야한다.
+    # n을 k진수로 변환한 결과를 저장할 문자열
     converted = ''
     
     # n을 k진수로 변환(나머지가 변환된 수, 몫은 다시 while문 돌려야)
     while n > 0:
-        # 현재 변환된 숫자의 앞에 추가하여 k진수 문자열을 만듭니다.
+        # n을 k로 나눈 나머지를 계산. k진수를 계속해서 누적해야
         converted = str(n % k) + converted
         # n을 k로 나눈 몫으로 갱신합니다. 이렇게 하면 다음 자릿값을 계산
         n //= k
@@ -24,6 +24,7 @@ def solution(n, k):
     # k진수로 변환된 문자열을 0을 기준으로 분리(중요!!)
     tokens = converted.split('0')
     for token in tokens:
+        # 빈 문자열은 건너뛴다(빈 문자열을 만들면서 0이 있는 곳은 ''로 빈 문자열이 된다.)
         if token == '':
             continue
         # 각 분리된 문자열이 소수인지 확인하고, 소수이면 answer를 1 증가
