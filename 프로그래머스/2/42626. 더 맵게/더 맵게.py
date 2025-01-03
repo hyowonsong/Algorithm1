@@ -1,5 +1,5 @@
 # 더 맵게
-from heapq import heappush, heappop
+from heapq import *
 
 def solution(scoville, k):
     answer = 0
