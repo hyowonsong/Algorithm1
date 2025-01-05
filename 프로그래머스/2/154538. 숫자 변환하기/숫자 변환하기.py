@@ -8,11 +8,11 @@ def solution(x, y, n):
     visited[x] = True  # 시작 숫자 방문 처리
     
     while queue:
-        current, operations = queue.popleft()
+        current, current_count = queue.popleft()
         
         # 목표 숫자에 도달한 경우 연산 횟수를 반환
         if current == y:
-            return operations
+            return current_count
         
         # 다음 상태로 이동 가능한 경우들을 탐색
         next_states = [current + n, current * 2, current * 3]
@@ -21,7 +21,7 @@ def solution(x, y, n):
             # 목표 숫자를 초과하지 않고, 아직 방문하지 않은 상태인 경우 큐에 추가
             if next_state <= y and not visited[next_state]:
                 visited[next_state] = True
-                queue.append((next_state, operations + 1))
+                queue.append((next_state, current_count + 1))
     
     # 목표 숫자에 도달할 수 없는 경우 -1 반환
     return -1
