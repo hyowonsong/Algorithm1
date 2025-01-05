@@ -1,9 +1,6 @@
-def point(route):
-    return route[1]
-
 def solution(routes):
     # 나간 지점을 기준으로 정렬
-    routes.sort(key=point)  
+    routes.sort(key=lambda route: route[1])  
     # 카메라 위치 초기화 (가장 작은 진입/나간 지점보다 작은 값)
     camera = -30001  
     # 설치된 카메라 수
