@@ -1,6 +1,6 @@
 def solution(n, lost, reserve):
-    # 1은 체육복이 있음, 0은 없음을 의미
-    students = [1] * (n + 1)  # 0번 인덱스는 사용하지 않음
+    # 맨 처음 리스트에 전부 1넣기!
+    students = [1] * (n + 1)  
     
     # 도난당한 학생 처리
     for l in lost:
@@ -14,7 +14,7 @@ def solution(n, lost, reserve):
     for i in range(1, n+1):
         # 여기 students[i] == 0 이거 추가해줘야
         if students[i] == 0:
-            # 앞번호 학생에게 빌리기
+            # 앞번호 학생에게 빌리기(범위 반드시 존재해야)
             if i > 1 and students[i-1] > 1:
                 students[i-1] -= 1
                 students[i] += 1
@@ -27,8 +27,7 @@ def solution(n, lost, reserve):
     
     # 체육복이 있는 학생 수 세기
     count = 0
-    for i in range(1, n+1):
+    for i in range(1, len(students)):
         if students[i] != 0:
             count += 1
-    
     return count
