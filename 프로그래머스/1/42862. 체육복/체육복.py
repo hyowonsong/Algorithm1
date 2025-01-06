@@ -28,6 +28,6 @@ def solution(n, lost, reserve):
     # 체육복이 있는 학생 수 세기
     count = 0
     for i in range(1, len(students)):
-        if students[i] != 0:
+        if students[i] > 0:
             count += 1
     return count
