@@ -1,5 +1,3 @@
-from itertools import permutations
-
 def is_prime(n):
     if n < 2:
         return False
@@ -8,25 +6,29 @@ def is_prime(n):
             return False
     return True
 
-def solution(numbers):
-    # 모든 가능한 숫자 조합 생성
-    nums = set()
-    # 0자리 숫자는 숫자가 아니기 때문에 고려할 필요가 없습니다.
-    for i in range(1, len(numbers) + 1):
-        # numbers에서 i개의 숫자를 선택하여 만들 수 있는 모든 순열 생성
-        perms = permutations(numbers, i)
-        for perm in perms:
-            # 각 순열을 정수로 변환하여 집합에 추가
-            # set을 사용하여 중복 제거
-            nums.add(int(''.join(perm)))
+def generate_combinations(numbers, current, visited, results):
+    # numbers: 숫자 문자열
+    # current: 현재까지 조합된 숫자
+    # visited: 방문 여부를 기록한 리스트
+    # results: 생성된 숫자 조합을 저장할 집합
+    if current:
+        results.add(int(current))  # 현재 조합을 정수로 변환하여 저장
+        
+    for i in range(len(numbers)):
+        if not visited[i]:  # 방문하지 않은 숫자만 추가
+            visited[i] = True
+            generate_combinations(numbers, current + numbers[i], visited, results)
+            visited[i] = False  # 백트래킹
 
+def solution(numbers):
+    results = set()  # 중복 제거를 위해 집합 사용
+    visited = [False] * len(numbers)  # 방문 여부 초기화
+    generate_combinations(numbers, "", visited, results)
+    
     # 소수 개수 세기
     count = 0
-    for num in nums:
-        # 각 숫자에 대해 소수 여부 확인
+    for num in results:
         if is_prime(num):
-            # 소수일 경우 카운트 증가
             count += 1
-
-    # 찾은 소수의 개수 반환
+    
     return count
