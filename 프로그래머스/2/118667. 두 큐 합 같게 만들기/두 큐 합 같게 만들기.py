@@ -1,41 +1,34 @@
 from collections import deque
 
 def solution(queue1, queue2):
-    # 두 큐의 합을 계산
-    total1, total2 = sum(queue1), sum(queue2)
-    total = total1 + total2
+    # 두 큐를 데크로 변환
+    queue1 = deque(queue1)
+    queue2 = deque(queue2)
     
-    # 만약 전체 합이 홀수라면, 두 큐를 같은 합으로 만들 수 없음
-    if total % 2 != 0:
+    # 두 큐의 합 계산
+    sum1, sum2 = sum(queue1), sum(queue2)
+    total_sum = sum1 + sum2
+    
+    # 목표 합 계산
+    if total_sum % 2 != 0:
         return -1
+    target = total_sum // 2
     
-    # 목표 합
-    target = total // 2
+    # 투 포인터 초기화
+    total = queue1 + queue2  # 두 큐를 이어붙인 배열
+    n = len(total)
+    left, right = 0, len(queue1)
+    current_sum = sum1
+    max_moves = n * 2  # 최대 이동 횟수 제한
     
-    # 두 큐를 deque로 변환 후 양쪽에서 pop,append 효율적으로 수행
-    q1 = deque(queue1)
-    q2 = deque(queue2)
-    
-    # 포인터 초기화
-    count = 0
-    max_iterations = len(q1) * 4
-    
-    while total1 != target:
-        if total1 > target:
-            # q1에서 원소를 빼서 q2로 이동
-            num = q1.popleft()
-            total1 -= num
-            q2.append(num)
-        else:
-            # q2에서 원소를 빼서 q1으로 이동
-            num = q2.popleft()
-            total1 += num
-            q1.append(num)
-        
-        count += 1
-        
-        # 이동 횟수가 최대 횟수를 초과하면 더 이상 가능하지 않음
-        if count > max_iterations:
-            return -1
-    
-    return count
+    for moves in range(max_moves):
+        if current_sum == target:
+            return moves
+        if current_sum < target:  # 목표 합보다 작으면 오른쪽에서 추가
+            current_sum += total[right]
+            right = (right + 1) % n
+        else:  # 목표 합보다 크면 왼쪽에서 제거
+            current_sum -= total[left]
+            left = (left + 1) % n
+            
+    return -1
