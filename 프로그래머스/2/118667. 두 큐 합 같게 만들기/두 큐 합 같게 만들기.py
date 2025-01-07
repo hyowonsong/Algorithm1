@@ -12,6 +12,7 @@ def solution(queue1, queue2):
     # 목표 합 계산
     if total_sum % 2 != 0:
         return -1
+    
     target = total_sum // 2
     
     # 투 포인터 초기화
@@ -24,11 +25,19 @@ def solution(queue1, queue2):
     for moves in range(max_moves):
         if current_sum == target:
             return moves
-        if current_sum < target:  # 목표 합보다 작으면 오른쪽에서 추가
+        
+        # 목표 합보다 작으면 오른쪽에서 추가
+        if current_sum < target:  
+            # queue2의 맨 처음부터 하나씩 추가
             current_sum += total[right]
+            # 추가하고 right를 한 칸 옮겨준다. 
             right = (right + 1) % n
-        else:  # 목표 합보다 크면 왼쪽에서 제거
+        
+        # 목표 합보다 크면 왼쪽에서 제거
+        else:  
+            # 왼쪽에서 하나 빼주고
             current_sum -= total[left]
+            # left를 한 칸 옮겨준다. 
             left = (left + 1) % n
             
     return -1
