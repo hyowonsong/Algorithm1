@@ -21,9 +21,10 @@ def solution(book_time):
     room_end_times = []
     
     for start, end in reservations:
+        # 예약이 시작되기 전에 끝나는 것이 있다면 heappop
         if room_end_times and room_end_times[0] <= start:
-            # 사용 가능한 객실이 있으면 해당 객실 제거
             heapq.heappop(room_end_times)
+            
         # 현재 예약의 종료 시간을 힙에 추가 (새 객실 할당 또는 기존 객실 재사용)
         heapq.heappush(room_end_times, end)
     
