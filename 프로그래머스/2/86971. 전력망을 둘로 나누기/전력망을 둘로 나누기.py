@@ -8,11 +8,11 @@ def bfs(start, graph, visited):
     count = 1
     
     while queue:
-        node = queue.popleft()
-        for neighbor in graph[node]:
-            if not visited[neighbor]:
-                visited[neighbor] = True
-                queue.append(neighbor)
+        v = queue.popleft()
+        for i in graph[v]:
+            if not visited[i]:
+                visited[i] = True
+                queue.append(i)
                 count += 1
     return count
 
@@ -31,10 +31,10 @@ def solution(n, wires):
         
         # 탐색
         visited = [False] * (n + 1)  # 방문 기록
-        part1_size = bfs(1, graph, visited)  # 첫 번째 네트워크 크기
-        part2_size = n - part1_size         # 두 번째 네트워크 크기
+        network1 = bfs(1, graph, visited)  # 첫 번째 네트워크 크기
+        network2 = n - network1         # 두 번째 네트워크 크기
         
         # 최소 차이 업데이트
-        min_difference = min(min_difference, abs(part1_size - part2_size))
+        min_difference = min(min_difference, abs(network2-network1))
     
     return min_difference
