@@ -4,7 +4,11 @@ def solution(new_id):
 
     # 2단계: 허용된 문자 외의 모든 문자를 제거
     allowed_chars = set('abcdefghijklmnopqrstuvwxyz0123456789-_.')
-    new_id = ''.join(char for char in new_id if char in allowed_chars)
+    new_id_filtered = ""  # 새로운 문자열을 저장할 변수
+    for char in new_id:
+        if char in allowed_chars:
+            new_id_filtered += char
+    new_id = new_id_filtered  # 필터링된 문자열을 new_id에 다시 저장
 
     # 3단계: 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환
     while '..' in new_id:
