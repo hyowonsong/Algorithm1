@@ -1,4 +1,4 @@
-import heapq
+from heapq import *
 
 def time_to_minutes(t):
     hours, minutes = map(int, t.split(':'))
@@ -21,11 +21,11 @@ def solution(book_time):
     room_end_times = []
     
     for start, end in reservations:
-        # 예약이 시작되기 전에 끝나는 것이 있다면 heappop
+        # 예약이 시작되기 전에 끝나는 것이 있다면
         if room_end_times and room_end_times[0] <= start:
-            heapq.heappop(room_end_times)
+            heappop(room_end_times)
             
         # 현재 예약의 종료 시간을 힙에 추가 (새 객실 할당 또는 기존 객실 재사용)
-        heapq.heappush(room_end_times, end)
+        heappush(room_end_times, end)
     
     return len(room_end_times)  # 필요한 총 객실 수 반환
