@@ -1,28 +1,39 @@
-from math import gcd
-from functools import reduce
+# 두 숫자의 최대 공약수를 구하는 함수 (유클리드 알고리즘)
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
 
+# 배열의 숫자들로부터 최대 공약수를 계산하는 함수
+def gcd_array(array):
+    current_gcd = array[0]  # 배열의 첫 번째 요소를 초기 GCD로 설정
+    for num in array[1:]:  # 두 번째 요소부터 반복하며 GCD를 계산
+        current_gcd = gcd(current_gcd, num)
+        if current_gcd == 1:  # GCD가 1이면 더 이상 계산할 필요 없음
+            break
+    return current_gcd
+
+# 조건을 확인하는 함수
+def validate(candidate, array):
+    for x in array:
+        if x % candidate == 0:  # candidate가 배열의 요소 중 하나라도 나누면 조건 불충족
+            return False
+    return True
+
+# 메인 solution 함수
 def solution(arrayA, arrayB):
-    # 각 배열의 최대공약수를 구합니다.
-    # reduce 함수를 사용하여 배열의 모든 요소에 대해 gcd를 순차적으로 적용
-    gcdA = reduce(gcd, arrayA)
-    gcdB = reduce(gcd, arrayB)
-    
-    # arrayB의 모든 원소가 gcdA로 나눠지는지 확인
-    # 한쪽만 성립해야하기 때문에 둘다 성립되는 아래의 경우 return False 해준다.
-    def check_divisibility(gcd_val, arrayX):
-        for num in arrayX:
-            if num % gcd_val == 0:
-                return False
-        return True
+    # 철수와 영희 각각의 배열에 대한 최대 공약수 계산
+    gcdA = gcd_array(arrayA)
+    gcdB = gcd_array(arrayB)
 
-    answer = 0
+    max_a = 0
 
-    # gcdA가 arrayB의 모든 원소를 나누지 못하는 경우
-    if check_divisibility(gcdA, arrayB):
-        answer = max(answer, gcdA)
-    
-    # gcdB가 arrayA의 모든 원소를 나누지 못하는 경우
-    if check_divisibility(gcdB, arrayA):
-        answer = max(answer, gcdB)
-    
-    return answer
+    # 철수의 최대 공약수가 영희 조건을 만족하는지 확인
+    if validate(gcdA, arrayB):
+        max_a = max(max_a, gcdA)
+
+    # 영희의 최대 공약수가 철수 조건을 만족하는지 확인
+    if validate(gcdB, arrayA):
+        max_a = max(max_a, gcdB)
+
+    return max_a
