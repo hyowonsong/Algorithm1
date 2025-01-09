@@ -1,7 +1,7 @@
 def solution(wallpaper):
     # 파일 위치의 최소/최대 좌표를 저장할 변수 초기화
     min_x, min_y = float('inf'), float('inf')
-    max_x, max_y = -1, -1
+    max_x, max_y = float('-inf'), float('-inf')
     
     # wallpaper를 순회하면서 파일("#")의 위치 확인
     for i, row in enumerate(wallpaper):
