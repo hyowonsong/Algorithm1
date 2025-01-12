@@ -20,6 +20,7 @@ def bfs(start, end, maps):
     while queue:
         x, y = queue.popleft()
         
+        # 결과 값이 최종값 end이면 return 
         if (x, y) == end:
             return visited[x][y]
             
