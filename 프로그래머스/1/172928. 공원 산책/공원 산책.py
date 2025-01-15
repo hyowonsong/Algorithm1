@@ -17,11 +17,11 @@ def solution(park, routes):
     
     # 각 명령 실행
     for route in routes:
-        op, dist = route.split()
+        direction, dist = route.split()
         dist = int(dist)
         
         # 이동할 위치 계산
-        dx, dy = directions[op]
+        dx, dy = directions[direction]
         nx, ny = x, y
         
         # 경로 상에 장애물이 있는지 확인
