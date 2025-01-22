@@ -5,7 +5,6 @@ def solution(food_times, k):
     # 모든 음식을 다 먹는 시간이 K보다 작거나 같으면 더 먹을 음식이 없으므로 -1 반환
     if sum(food_times) <= k:
         return -1
-
     # 우선순위 큐(최소 힙)를 사용하여 음식을 먹는 데 걸리는 시간을 기준으로 정렬
     q = []
     for i in range(len(food_times)):
