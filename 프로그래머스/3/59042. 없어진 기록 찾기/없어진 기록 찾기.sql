@@ -1,0 +1,7 @@
+# 입양을 간 기록은 있는데, 보호소에 들어온 기록이 없는 동물의 ID, 이름을 ID 순으로 조회
+# LEFT JOIN을 사용하여 ANIMAL_OUTS 테이블의 모든 데이터를 가져오고, ANIMAL_INS 테이블에 일치하는 ANIMAL_ID가 없으면 B.ANIMAL_ID는 NULL이 됩니다.
+
+SELECT A.ANIMAL_ID, A.NAME FROM ANIMAL_OUTS A
+LEFT JOIN ANIMAL_INS B ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE B.ANIMAL_ID IS NULL
+ORDER BY A.ANIMAL_ID;
