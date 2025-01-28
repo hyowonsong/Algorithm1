@@ -1,6 +1,5 @@
-# 1. RPODUCT 테이블과 OFFLINE_SALE 테이블에서 상품코드 별 매출액(판매가*판매량) 합계를 출력하는 SQL문 작성
-# 2. 결과는 매출액을 기준으로 내림차순 정렬
-# 3. 매출액이 같다면 상품코드를 기준으로 오름차순 정렬
+# 1.RPODUCT, OFFLINE_SALE테이블에서 상품코드 별 매출액(판매가*판매량)합계 출력
+# 2. 결과는 매출액을 기준으로 내림차순, 매출액 같다면 상품코드 기준 오름차순 
 
 SELECT B.PRODUCT_CODE, SUM(B.PRICE * A.SALES_AMOUNT) AS SALES
 FROM PRODUCT B
