@@ -1,10 +1,10 @@
 # 최대공약수와 최소공배수
 def solution(n,m):
     answer =[]
-    # 최소 공약수를 저장할 리스트
+    # 최소 공배수를 저장할 리스트
     arr1=[]                 
 
-    # 최소 공약수 구하기
+    # 최소 공배수 구하기
     for i in range(1, min(n, m)+1):
         if n%i == 0 and m%i ==0: 
             arr1.append(i)
@@ -15,7 +15,8 @@ def solution(n,m):
         # 여기는 반대로 i가 n으로 나누어질 때 min_num = i 이다.
         # 최대공약수는 두 수의 공통된 약수 중에서 가장 큰 수를 찾는 것
         if i%n == 0 and i%m == 0:              
-            min_num = i                       
+            min_num = i 
+            # 반드시 break 해줘야
             break
 
     max_num = max(arr1)
