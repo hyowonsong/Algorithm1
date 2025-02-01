@@ -1,18 +1,16 @@
 def solution(s):
-    answer = ''
-    # 문자열을 공백을 기준으로 분할하여 리스트로 변환
-    s = s.split(' ')
-    # 리스트의 각 단어에 대해 반복
-    for i in s:
-        # len(i)에 대해 for 문을 돌려야 
-        for j in range(len(i)):
-            # 인덱스가 짝수인 경우
-            if j % 2 == 0:
-                answer += i[j].upper()
-            # 인덱스가 짝수가 아닌 경우
+    answer = []
+    
+    for word in s.split(" "):  # 공백을 유지 위해 split(" ") 사용
+        new_word = ""  # 변환된 단어 저장
+        for i, char in enumerate(word):  # 각 단어의 문자별 인덱스 
+            # 짝수 번째 -> 대문자
+            if i % 2 == 0:
+                new_word += char.upper()  
+            # 홀수 번째 -> 소문자
             else:
-                answer += i[j].lower()
-        # 각 단어 처리 후에 공백 추가
-        answer +=' '
-    # 마지막 단어 이후의 불필요한 공백 제거 후 반환
-    return answer[:-1]
+                new_word += char.lower()  
+        answer.append(new_word)
+    
+    # 원래 공백 개수 유지
+    return " ".join(answer)  
