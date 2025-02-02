@@ -1,8 +1,6 @@
 # 기사단원의 무기
 
 def solution(number, limit, power):
-    answer = 0
-
     # 각 기사는 자신의 번호의 약수 개수에 해당하는 무기 구매
     # 제한수치보다 큰 공격력 무기 구매해야 하는 기사는 max_limit 무기 구매
     # 약수 구하는 과정
@@ -18,14 +16,15 @@ def solution(number, limit, power):
                     count += 1
         return count
     
-    total_weight = 0
+    answer = 0
+    # 여기서도 반드시 1부터 체크해야 한다!!
     for i in range(1,number+1):
         divisors_count = divisor(i)
         # 약수의 개수가 제한 수치(limit)를 초과한다면 power라는 무기를 사용해야
         if divisors_count > limit:
-            total_weight += power
+            answer += power
         # 약수의 개수가 초과하지 않는다면 divisors_count를 사용한다.
         else:
-            total_weight += divisors_count
+            answer += divisors_count
 
-    return total_weight
+    return answer
