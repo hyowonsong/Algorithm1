@@ -16,7 +16,7 @@ def solution(phone_book):
             prefix += digit      
             
             # 접두어가 해시 맵에 있다면 해당 전화번호는 다른 번호의 접두어
-            # 이깨, 자기 자신인 i는 빼고 체크해야 한다. 
+            # 자기 자신인 i는 빼고 체크해야 한다. 
             # 자기 자신을 접두어로 판단하지 않기 위해서.
             if prefix != i and prefix in dict:
                 return False
