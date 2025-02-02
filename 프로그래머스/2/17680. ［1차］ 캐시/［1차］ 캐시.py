@@ -3,7 +3,7 @@ from collections import deque
 def solution(cacheSize, cities):
     answer = 0
 
-    # 캐시 교체 알고리즘(LRU)
+    # 캐시 교체 알고리즘(LRU) - 여기 maxlen이 핵심
     cache = deque(maxlen=cacheSize)
 
     for city in cities:
