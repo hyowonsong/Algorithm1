@@ -7,7 +7,6 @@
 # 5. 한 글자인 단어는 인정되지 않습니다.
 
 # 가장 먼저 탈락하는 사람의 번호와 그 사람이 몇 번째 차례에 탈락하는지 구하기
-
 def solution(n, words):
     last_words = [] 
 
@@ -15,7 +14,7 @@ def solution(n, words):
         if idx > 0:  # 첫 번째 단어는 검사를 생략
             # 앞 단어의 끝 글자와 현재 단어의 첫 글자가 다르거나, 이미 말한 단어를 다시 말한 경우
             if words[idx - 1][-1] != word[0] or word in last_words:
-                # 탈락자 번호와 차례 계산
+                # 탈락자 번호와 차례 계산(idx는 0부터 시작하니 + 1)
                 person = (idx % n) + 1
                 turn = (idx // n) + 1
                 return [person, turn]
@@ -23,4 +22,3 @@ def solution(n, words):
         last_words.append(word)  # 단어를 기록
 
     return [0, 0]  # 탈락자가 없으면 [0, 0] 반환
-
