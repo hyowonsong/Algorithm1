@@ -7,7 +7,8 @@ def solution(people, limit):
 
     people.sort()
     answer = 0
-
+    
+    # 여기서 left 는 0, right는 left가 0부터 시작하니 len(people)-1
     left = 0 
     right = len(people) - 1  
 
@@ -15,7 +16,7 @@ def solution(people, limit):
         if people[left] + people[right] <= limit:
             left += 1  
         
-        # 가장 무거운 사람은 항상 보트에 태웁니다.(이건 default 값)
+        # 두 명을 태울 수 없는 경우, 가장 무거운 사람은 혼자라도 무조건 보트에 타야 함
         right -= 1
         answer += 1  # 보트를 하나 사용합니다.
     
