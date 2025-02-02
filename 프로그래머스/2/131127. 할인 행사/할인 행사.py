@@ -1,5 +1,3 @@
-# 회원등록시 원하는 제품을 모두 할인 받을 수 있는 회원등록 날짜 총 일수
-
 def solution(want, number, discount):
     want_dict = {}
     for i in range(len(want)):
@@ -22,8 +20,10 @@ def solution(want, number, discount):
 
         # 원하는 제품 수량과 일치하는지 확인
         valid = True
+        # 하나하나 for문을 돌아다니면서 같은지 체크 
         for item in want_dict:
-            if current_count.get(item, 0) != want_dict[item]:
+            # 현재 카운트에 해당 제품이 없다면 valid=False
+            if item not in current_count or current_count[item] != want_dict[item]:
                 valid = False
                 break
 
