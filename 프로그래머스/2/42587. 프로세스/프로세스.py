@@ -1,8 +1,11 @@
+# 프로세스
+
 from collections import deque
 
 def solution(priorities, location):
     # 큐 초기화 (리스트를 하나씩 큐에 추가)
     queue = deque()
+    # 여기서 index는 location과의 짝을 맞추기 위해 사용이 되었음(마지막 답 구하는 곳에 사용)
     for index,prioritie in enumerate(priorities):
         queue.append((index, prioritie))
 
