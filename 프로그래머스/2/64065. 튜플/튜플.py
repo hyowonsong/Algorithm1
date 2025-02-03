@@ -25,4 +25,3 @@ def solution(s):
                 break
 
     return answer
-    
