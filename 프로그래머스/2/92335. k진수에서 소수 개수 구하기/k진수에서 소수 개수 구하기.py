@@ -1,5 +1,3 @@
-# k진수에서 소수 구하기
-
 def is_prime(num):
     if num < 2:
         return False
@@ -16,7 +14,7 @@ def solution(n, k):
     # n을 k진수로 변환(나머지가 변환된 수, 몫은 다시 while문 돌려야)
     while n > 0:
         # n을 k로 나눈 나머지를 계산. k진수를 계속해서 누적해야
-        converted = str(n % k) + converted
+        converted = str(n%k) + converted
         # n을 k로 나눈 몫으로 갱신합니다. 이렇게 하면 다음 자릿값을 계산
         n //= k
     
