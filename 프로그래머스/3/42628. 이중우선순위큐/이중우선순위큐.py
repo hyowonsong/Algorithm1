@@ -18,13 +18,13 @@ def solution(operations):
         elif order == "D":
             # 최대값을 삭제하는 경우(max_heap을 사용)
             if number == 1 and max_heap:
-                # 최대 힙에서 값을 꺼내고, 해당 값을 최소 힙에서 제거
+                #최대 힙에서 값을 꺼내고,해당 값을 최소 힙에서 제거(remove사용)
                 # 다시 min_heap에 있는 경우로 바꿔야 하니까
                 max_value = -heappop(max_heap)
                 min_heap.remove(max_value)
             # 최소값을 삭제하는 경우(min_heap을 사용)
             elif number == -1 and min_heap:
-                # 최소 힙에서 값을 꺼내고, 해당 값을 최대 힙에서 제거
+                #최소 힙에서 값을 꺼내고,해당 값을 최대 힙에서 제거(remove사용)
                 # 다시 max_heap에 있는 경우로 바꿔야 하니까
                 min_value = -heappop(min_heap)
                 max_heap.remove(min_value)
