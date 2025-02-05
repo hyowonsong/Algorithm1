@@ -1,3 +1,5 @@
+# 핵심은 인덱스를 가지는 리스트를 하나 따로 빼는 것 + -1을 미리 정의
+
 def solution(numbers):
     answer = [-1] * len(numbers)  # 뒷 큰수 없으면 -1인 것을 미리 정의
     stack = []  # 인덱스를 담을 스택
