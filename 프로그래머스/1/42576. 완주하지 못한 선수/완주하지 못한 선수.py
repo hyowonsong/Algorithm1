@@ -1,5 +1,6 @@
 def solution(participant, completion):
     # 참가자 이름과 그 수를 딕셔너리(딕셔너리는 {})
+    # participant가 더 많으니 participant를 dict에 넣고 completion 순회
     dict = {}
 
     for i in participant:
