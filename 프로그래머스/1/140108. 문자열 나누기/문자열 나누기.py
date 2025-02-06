@@ -3,7 +3,7 @@
 def solution(s):
     answer = 0  
 
-    # 문자열이 비어 있지 않을 동안 반복
+    #문자열이 비어 있지 않을 동안 반복(이 문장 읽고 while문 바로 사용 생각해야)
     while s:  
         # 현재 문자열의 첫 번째 글자를 기준으로 설정
         x = s[0]  
@@ -13,6 +13,7 @@ def solution(s):
         count_not_x = 0  
         
         # 문자열의 각 글자를 순회
+        # (맨 처음인 x도 같이 포함되기 때문에 두 번째 글자가 x와 같지 않다면 바로 분리가 된다.)
         for i in range(len(s)):  
             # 현재 글자가 기준 글자와 같다면
             if s[i] == x:  
@@ -21,7 +22,7 @@ def solution(s):
             else:  
                 count_not_x += 1  
             
-            # 기준 글자와 기준이 아닌 글자의 개수가 같아지면
+            # 기준 글자와 기준이 아닌 글자의 개수가 같아지면(for문 안에서)
             if count_x == count_not_x:
                 # 분리된 문자열 개수를 증가  
                 answer += 1  
