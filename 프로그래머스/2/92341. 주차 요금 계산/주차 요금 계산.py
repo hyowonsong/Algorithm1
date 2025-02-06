@@ -1,54 +1,54 @@
-from collections import defaultdict
-import math
+# 주차 요금 계산
 
-# 주차 요금을 계산하는 함수
-def calculate_fee(time, fees):
-    # 요금표에서 기본 시간, 기본 요금, 단위 시간, 단위 요금을 가져옴
-    basic_time, basic_fee, unit_time, unit_fee = fees
+# 주차장의 요금표(fess), 기록(records)이 주어짐.
+# 차량별로 주차 요금을 계산하자.
 
-    # 누적 주차 시간이 기본 시간 이하면 기본 요금만 부과
-    if time <= basic_time:
-        return basic_fee
-    else:
-        # 기본 시간을 초과한 경우, 초과 시간에 대해 단위 요금을 계산하여 부과
-        return basic_fee + math.ceil((time - basic_time) / unit_time) * unit_fee
+# fees는 기본 시간(분), 기본 요금(원), 단위 시간(분), 단위 요금(원)
+# records에는 (입,출)차시간, 차량 번호, 내역이 있습니다.
 
-# 주차 요금을 계산하는 메인 함수
 def solution(fees, records):
-    # 입차 시간을 저장할 딕셔너리
-    in_time = {}
+    base_time, base_fee, unit_time, unit_fee = fees
+    parking_records = {}  # 차량별 입차 시간 저장
+    total_time = {}  # 차량별 누적 주차 시간 저장
 
-    # 차량별 누적 주차 시간을 저장할 딕셔너리 (초기값 0)
-    total_time = defaultdict(int)
+    def calculate_time(in_time, out_time):
+        in_h, in_m = map(int, in_time.split(":"))
+        out_h, out_m = map(int, out_time.split(":"))
+        return (out_h * 60 + out_m) - (in_h * 60 + in_m)
 
-    # 입출차 기록을 순회하면서 주차 시간을 계산
     for record in records:
-        # 각 기록을 시간, 차량 번호, 상태로 분리
         time, car_number, status = record.split()
         
-        # 시각을 분 단위로 변환
-        hh, mm = map(int, time.split(':'))
-        minutes = hh * 60 + mm
-        
         if status == "IN":
-            # 입차한 경우, in_time 딕셔너리에 입차 시간을 저장
-            in_time[car_number] = minutes
-        elif status == "OUT":
-            # 출차한 경우, 해당 차량의 주차 시간을 계산하여 total_time에 누적
-            total_time[car_number] += minutes - in_time[car_number]
-            # 출차 후에는 입차 기록을 삭제
-            del in_time[car_number]
+            parking_records[car_number] = time
+        else:  # "OUT"인 경우
+            parked_time = calculate_time(parking_records[car_number], time)
+            if car_number in total_time:
+                total_time[car_number] += parked_time
+            else:
+                total_time[car_number] = parked_time
+            del parking_records[car_number]  # 출차 완료된 차량 삭제
 
-    # 출차 기록이 없는 차량은 23:59에 출차한 것으로 간주하고 시간 계산
-    for car_number, minutes in in_time.items():
-        total_time[car_number] += 23 * 60 + 59 - minutes
+    # 23:59까지 출차되지 않은 차량 처리
+    for car_number in parking_records:
+        parked_time = calculate_time(parking_records[car_number], "23:59")
+        if car_number in total_time:
+            total_time[car_number] += parked_time
+        else:
+            total_time[car_number] = parked_time
 
-    # 차량 번호가 작은 순서대로 주차 요금을 계산
+    # 요금 계산 함수
+    def calculate_fee(parked_time):
+        if parked_time <= base_time:
+            return base_fee
+        extra_time = parked_time - base_time
+        extra_fee = ((extra_time + unit_time - 1) // unit_time) * unit_fee  # 올림 처리
+        return base_fee + extra_fee
+
+    # 차량 번호 기준 정렬 후 요금 계산
+    sorted_cars = sorted(total_time.keys())
     result = []
-    for car_number in sorted(total_time):
-        # 누적 주차 시간을 바탕으로 요금을 계산
-        fee = calculate_fee(total_time[car_number], fees)
-        # 계산된 요금을 결과 리스트에 추가
-        result.append(fee)
-
+    for car_number in sorted_cars:
+        result.append(calculate_fee(total_time[car_number]))
+    
     return result
