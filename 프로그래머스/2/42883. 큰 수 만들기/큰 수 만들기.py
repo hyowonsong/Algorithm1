@@ -1,3 +1,5 @@
+# 2번째 예시를 보고 그냥 정렬해서 풀면은 안되겠구나를 유추해야 한다. 
+
 def solution(number, k):
     stack = []
     for num in number:
