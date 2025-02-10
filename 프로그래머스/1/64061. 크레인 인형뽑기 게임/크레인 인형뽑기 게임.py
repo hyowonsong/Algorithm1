@@ -4,14 +4,11 @@ def solution(board, moves):
     # 인형의 개수를 저장할 변수
     count = 0
     
-    # board의 크기
-    n = len(board)
-    
     # moves 배열의 각 위치를 순회
     for move in moves:
         col = move - 1  # 0-based index로 변환
-        # 해당 열에서 인형을 꺼내기
-        for row in range(n):
+        # 맨 위에서 부터 하나씩 인형을 꺼내기
+        for row in range(len(board)):
             if board[row][col] != 0:
                 # 꺼낸 인형
                 doll = board[row][col]
