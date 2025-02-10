@@ -9,7 +9,7 @@ def solution(bridge_length, weight, truck_weights):
     # queue가 돌아가거나 total_weight이 0보다 크면
     while queue or total_weight > 0:
         answer += 1
-        # 2. 다리에서 트럭이 나옴
+        # 2. 다리에서 트럭이 나옴(1초가 지날 때마다 무조건 하나씩 빼야함)
         pop_truck = bridge.popleft()
         total_weight -= pop_truck
 
