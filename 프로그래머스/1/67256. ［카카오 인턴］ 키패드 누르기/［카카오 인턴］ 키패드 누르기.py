@@ -23,36 +23,33 @@ def solution(numbers, hand):
         hand_preference = "R"
     
     # 번호 순회
-    for num in numbers:
-        current = keypad[num]
-        
+    for num in numbers: 
         if num in [1, 4, 7]:  # 왼쪽 열
             result.append("L")
-            left_pos = current
+            left_pos = keypad[num]  # 현재 위치 변경
 
         elif num in [3, 6, 9]:  # 오른쪽 열
             result.append("R")
-            right_pos = current
+            right_pos = keypad[num] # 현재 위치 변경
 
         else:  # 가운데 열
-            # 거리 계산(맨하튼 거리 사용)
-            left_distance = abs(left_pos[0] - current[0]) + abs(left_pos[1] - current[1])
-            right_distance = abs(right_pos[0] - current[0]) + abs(right_pos[1] - current[1])
+            # 거리 계산(맨해튼 거리 사용)
+            left_distance = abs(left_pos[0] - keypad[num][0]) + abs(left_pos[1] - keypad[num][1])
+            right_distance = abs(right_pos[0] - keypad[num][0]) + abs(right_pos[1] - keypad[num][1])
             
-            # 왼손이 더 가까움
-            if left_distance < right_distance:  
+            if left_distance < right_distance:  # 왼손이 더 가까움
                 result.append("L")
-                left_pos = current
-            # 오른손이 더 가까움
-            elif left_distance > right_distance:  
+                left_pos = keypad[num]
+                
+            elif left_distance > right_distance:  # 오른손이 더 가까움
                 result.append("R")
-                right_pos = current
-            # 거리가 같음
-            else:  
+                right_pos = keypad[num]
+                
+            else:  # 거리가 같으면 자신의 선호 선을 기준
                 result.append(hand_preference)
                 if hand_preference == "L":
-                    left_pos = current
+                    left_pos = keypad[num]
                 else:
-                    right_pos = current
+                    right_pos = keypad[num]
     
     return "".join(result)
