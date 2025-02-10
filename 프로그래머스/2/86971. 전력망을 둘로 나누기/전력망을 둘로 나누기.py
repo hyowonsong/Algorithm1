@@ -21,6 +21,7 @@ def solution(n, wires):
     # 전선을 하나씩 끊어가며 두 네트워크로 나눈 송전탑 개수의 최소 차이를 계산.
     min_difference = n  # 초기값을 최대값으로 설정
     
+    # i 쪽은 len(wires)를 j쪽은 연결된 것을 추가해야하기 때문에 wires
     for i in range(len(wires)):
         # 그래프 구성 (인접 리스트)
         graph = [[] for _ in range(n + 1)]
