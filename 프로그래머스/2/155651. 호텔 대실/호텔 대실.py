@@ -25,7 +25,8 @@ def solution(book_time):
         if room_end_times and room_end_times[0] <= start:
             heappop(room_end_times)
             
-        # 현재 예약의 종료 시간을 힙에 추가 (새 객실 할당 또는 기존 객실 재사용)
+        # 현재 예약의 종료 시간을 힙에 추가(새 객실 할당 또는 기존 객실 재사용)        
+        # 맨 처음 room_end_times에 아무것도 없으면 이게 먼저 실행된다.
         heappush(room_end_times, end)
     
     return len(room_end_times)  # 필요한 총 객실 수 반환
